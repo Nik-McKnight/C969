@@ -42,9 +42,24 @@ namespace C969
                 Console.WriteLine(reader.GetString(6));
                 Console.WriteLine(reader.GetString(7));
             }
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            using (var reader = new System.IO.StreamReader(@"..\..\mock data\address.csv"))
+            {
+                List<string> listA = new List<string>();
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+
+                    listA.Add(line);
+                }
+                Console.WriteLine(listA[1]);
+            }
+
+
+
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
 
         }
     }

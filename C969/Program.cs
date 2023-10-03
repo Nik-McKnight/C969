@@ -26,34 +26,26 @@ namespace C969
             // Create mysql connection
             MySqlConnection conn = new MySqlConnection(constring);
             conn.Open();
+            popCountry(conn);
+            conn.Close();
+            Console.WriteLine("Done.");
+            //// Query
+            //string query = "select * from user";
+            //MySqlCommand cmd = new MySqlCommand(query, conn);
+            //MySqlDataReader reader = cmd.ExecuteReader();
+            //while (reader.Read())
+            //{
+            //    Console.WriteLine(reader.GetString(0));
+            //    Console.WriteLine(reader.GetString(1));
+            //    Console.WriteLine(reader.GetString(2));
+            //    Console.WriteLine(reader.GetString(3));
+            //    Console.WriteLine(reader.GetString(4));
+            //    Console.WriteLine(reader.GetString(5));
+            //    Console.WriteLine(reader.GetString(6));
+            //    Console.WriteLine(reader.GetString(7));
+            //}
 
-            // Query
-            string query = "select * from user";
-            MySqlCommand cmd = new MySqlCommand(query, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                Console.WriteLine(reader.GetString(0));
-                Console.WriteLine(reader.GetString(1));
-                Console.WriteLine(reader.GetString(2));
-                Console.WriteLine(reader.GetString(3));
-                Console.WriteLine(reader.GetString(4));
-                Console.WriteLine(reader.GetString(5));
-                Console.WriteLine(reader.GetString(6));
-                Console.WriteLine(reader.GetString(7));
-            }
 
-            using (var reader = new System.IO.StreamReader(@"..\..\mock data\address.csv"))
-            {
-                List<string> listA = new List<string>();
-                while (!reader.EndOfStream)
-                {
-                    var line = reader.ReadLine();
-
-                    listA.Add(line);
-                }
-                Console.WriteLine(listA[1]);
-            }
 
 
 
@@ -61,6 +53,39 @@ namespace C969
             //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
+        }
+
+        public static void popCountry(MySqlConnection conn)
+        {
+            try
+            {
+                using (var reader = new System.IO.StreamReader(@"..\..\mock data\country.csv"))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var fields = line.Split('\u002C');
+                        string country = fields[0];
+                        if (country == "country") continue;
+                        DateTime createDate = DateTime.Now;
+                        string createdBy = fields[2];
+                        DateTime lastUpdate = DateTime.Now;
+                        string lastUpdateBy = fields[4];
+
+                        // Problem is probably that I'm passing a datetime into a string.
+
+                        string sql = "INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('" + country + "'," + createDate + ",'" + createdBy + "'," + lastUpdate + ",'" + lastUpdateBy + "');";
+                        Console.WriteLine(sql);
+                        MySqlCommand cmd = new MySqlCommand(sql, conn);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
     }
 }

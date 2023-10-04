@@ -26,7 +26,8 @@ namespace C969
             // Create mysql connection
             MySqlConnection conn = new MySqlConnection(constring);
             conn.Open();
-            popCountry(conn);
+            SeedData seed = new SeedData(conn);
+            //popCountry(conn);
             conn.Close();
             Console.WriteLine("Done.");
             //// Query
@@ -55,37 +56,37 @@ namespace C969
 
         }
 
-        public static void popCountry(MySqlConnection conn)
-        {
-            try
-            {
-                using (var reader = new System.IO.StreamReader(@"..\..\mock data\country.csv"))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        var line = reader.ReadLine();
-                        var fields = line.Split('\u002C');
-                        string country = fields[0];
-                        if (country == "country") continue;
-                        DateTime createDate = DateTime.Now;
-                        string createdBy = fields[2];
-                        DateTime lastUpdate = DateTime.Now;
-                        string lastUpdateBy = fields[4];
+        //public static void popCountry(MySqlConnection conn)
+        //{
+        //    try
+        //    {
+        //        using (var reader = new System.IO.StreamReader(@"..\..\mock data\country.csv"))
+        //        {
+        //            while (!reader.EndOfStream)
+        //            {
+        //                var line = reader.ReadLine();
+        //                var fields = line.Split('\u002C');
+        //                string country = fields[0];
+        //                if (country == "country") continue;
+        //                string createDate = fields[1];
+        //                string createdBy = fields[2];
+        //                string lastUpdate = fields[3];
+        //                string lastUpdateBy = fields[4];
 
-                        // Problem is probably that I'm passing a datetime into a string.
+        //                // Problem is probably that I'm passing a datetime into a string.
 
-                        string sql = "INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('" + country + "'," + createDate + ",'" + createdBy + "'," + lastUpdate + ",'" + lastUpdateBy + "');";
-                        Console.WriteLine(sql);
-                        MySqlCommand cmd = new MySqlCommand(sql, conn);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+        //                string sql = "INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('" + country + "', CURDATE(),'" + createdBy + "', CURDATE() ,'" + lastUpdateBy + "');";
+        //                Console.WriteLine(sql);
+        //                MySqlCommand cmd = new MySqlCommand(sql, conn);
+        //                cmd.ExecuteNonQuery();
+        //            }
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
+        //}
     }
 }

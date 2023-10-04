@@ -20,15 +20,16 @@ namespace C969
             string server = "localhost";
             string database = "mydb";
             string username = "root";
+            //string username = "test";
             string password = "nikk";
+            //string password = "test";
             string constring = "SERVER="+server+";DATABASE="+database+";UID="+username+";PASSWORD="+password+";";
 
             // Create mysql connection
             MySqlConnection conn = new MySqlConnection(constring);
             conn.Open();
-            SeedData seed = new SeedData(conn);
+            //SeedData seed = new SeedData(conn);
             //popCountry(conn);
-            conn.Close();
             Console.WriteLine("Done.");
             //// Query
             //string query = "select * from user";
@@ -45,48 +46,20 @@ namespace C969
             //    Console.WriteLine(reader.GetString(6));
             //    Console.WriteLine(reader.GetString(7));
             //}
+            conn.Close();
+
+            System.Threading.Thread.CurrentThread.CurrentCulture =
+            System.Globalization.CultureInfo.GetCultureInfo("de");
+
+            System.Threading.Thread.CurrentThread.CurrentUICulture =
+                System.Globalization.CultureInfo.GetCultureInfo("de");
 
 
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
 
-
-
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
+            Application.Run(new login());
 
         }
-
-        //public static void popCountry(MySqlConnection conn)
-        //{
-        //    try
-        //    {
-        //        using (var reader = new System.IO.StreamReader(@"..\..\mock data\country.csv"))
-        //        {
-        //            while (!reader.EndOfStream)
-        //            {
-        //                var line = reader.ReadLine();
-        //                var fields = line.Split('\u002C');
-        //                string country = fields[0];
-        //                if (country == "country") continue;
-        //                string createDate = fields[1];
-        //                string createdBy = fields[2];
-        //                string lastUpdate = fields[3];
-        //                string lastUpdateBy = fields[4];
-
-        //                // Problem is probably that I'm passing a datetime into a string.
-
-        //                string sql = "INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy) VALUES ('" + country + "', CURDATE(),'" + createdBy + "', CURDATE() ,'" + lastUpdateBy + "');";
-        //                Console.WriteLine(sql);
-        //                MySqlCommand cmd = new MySqlCommand(sql, conn);
-        //                cmd.ExecuteNonQuery();
-        //            }
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.ToString());
-        //    }
-        //}
     }
 }

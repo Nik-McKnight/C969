@@ -21,7 +21,8 @@ namespace C969
 
             // Enable this to seed database
             //Utilities.SeedData();
-            Utilities.DeleteCustomer(2);
+            //Utilities.DeleteAppointment(1);
+            Utilities.UpdateAppointment(2, 3, 3, "test", "test", "test", "test", "test", "test", "2023-10-05 00:00:00", "2023-10-05 00:00:00", "2023-10-05 00:00:00", "test", "test");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

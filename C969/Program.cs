@@ -15,17 +15,13 @@ namespace C969
         [STAThread]
         static void Main()
         {
-            // Change this to test different cultures
+            // Uncomment and change this to test different cultures
             //System.Threading.Thread.CurrentThread.CurrentCulture =
             //System.Globalization.CultureInfo.GetCultureInfo("es-MX");
 
             // Enable this to seed database
-            //Utilities.SeedData();
-
-            Console.WriteLine(Utilities.CreateUser("testt", "test"));      
-            
-            Console.WriteLine(System.Globalization.CultureInfo.CurrentCulture);
-
+            Utilities.SeedData();
+            Utilities.DeleteCustomer(1);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

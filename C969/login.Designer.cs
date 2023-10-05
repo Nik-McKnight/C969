@@ -62,6 +62,7 @@
             // 
             resources.ApplyResources(this.PassBox, "PassBox");
             this.PassBox.Name = "PassBox";
+            this.PassBox.UseSystemPasswordChar = true;
             this.PassBox.TextChanged += new System.EventHandler(this.PassBox_TextChanged);
             // 
             // PassLabelSec

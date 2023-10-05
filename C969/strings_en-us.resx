@@ -129,6 +129,9 @@
   <data name="PASSWORD" xml:space="preserve">
     <value>Enter Password</value>
   </data>
+  <data name="REGISTER" xml:space="preserve">
+    <value>Register</value>
+  </data>
   <data name="REGISTERFALSE" xml:space="preserve">
     <value>Username already exists</value>
   </data>

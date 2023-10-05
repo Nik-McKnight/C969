@@ -97,6 +97,15 @@ namespace C969 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register.
+        /// </summary>
+        internal static string REGISTER {
+            get {
+                return ResourceManager.GetString("REGISTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username already exists.
         /// </summary>
         internal static string REGISTERFALSE {

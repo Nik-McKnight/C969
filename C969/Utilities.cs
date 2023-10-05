@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,25 @@ namespace C969
 {
     internal static class Utilities
     {
+        internal static string GetPrimaryCulture()
+        {
+            return System.Globalization.CultureInfo.CurrentCulture.ToString();
+        }
+
+        internal static string GetSecondaryCulture()
+        {
+            if (GetPrimaryCulture() == "en-US")
+            {
+                return "es-MX";
+            }
+            else
+            {
+                return "en-us";
+            }
+        }
+
+
+
         // Create connection string
         static string server = "localhost";
         static string database = "mydb";
@@ -19,7 +39,6 @@ namespace C969
         static string constring = "SERVER="+server+";DATABASE="+database+";UID="+username+";PASSWORD="+password+";";
 
 
-
         internal static void SeedData()
         {
             // Create mysql connection
@@ -27,21 +46,6 @@ namespace C969
             conn.Open();
             SeedData seed = new SeedData(conn);
             Console.WriteLine("Done.");
-            //// Query
-            //string query = "select * from user";
-            //MySqlCommand cmd = new MySqlCommand(query, conn);
-            //MySqlDataReader reader = cmd.ExecuteReader();
-            //while (reader.Read())
-            //{
-            //    Console.WriteLine(reader.GetString(0));
-            //    Console.WriteLine(reader.GetString(1));
-            //    Console.WriteLine(reader.GetString(2));
-            //    Console.WriteLine(reader.GetString(3));
-            //    Console.WriteLine(reader.GetString(4));
-            //    Console.WriteLine(reader.GetString(5));
-            //    Console.WriteLine(reader.GetString(6));
-            //    Console.WriteLine(reader.GetString(7));
-            //}
             conn.Close();
         }
 
@@ -93,10 +97,6 @@ namespace C969
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
-                //while (reader.Read())
-                //{
-                //    Console.WriteLine(reader.(1));
-                //}
                 return true;
             }
             else return false;
@@ -121,18 +121,126 @@ namespace C969
             }
         }
 
-        internal static string GetPrimaryCulture()
+        internal static Boolean CreateCustomer(string customerName, int addressId, string createdBy)
         {
-            return System.Globalization.CultureInfo.CurrentCulture.ToString();
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(constring);
+                conn.Open();
+                //if (customerName == null || customerName == "" || password == null || password == "") return false;
+                string sql = "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
+                    "VALUES ('" + customerName + "','" + addressId + "',1, CURDATE(),'" + createdBy + "', CURDATE() ,'" + createdBy + "');";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        internal static string GetSecondaryCulture()
+        internal static string[] ReadCustomer(int customerId)
         {
-            if (System.Globalization.CultureInfo.CurrentCulture.ToString() == "en-US") {
-                return "es-MX";
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(constring);
+                conn.Open();
+                string sql = "select * from customer where customerId = " + customerId + ";";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] output = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                                            reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)};
+                        Console.WriteLine(output[1]);
+                        return output;
+                    }
+                    return null;
+                }
+                else return null;
+
             }
-            else {
-                return "en-us";
+            catch
+            {
+                return null;
+            }
+        }
+
+        internal static ArrayList ReadAllCustomers()
+        {
+            ArrayList output = new ArrayList();
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(constring);
+                conn.Open();
+                string sql = "select * from customer;";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read()) { 
+                        string[] customer = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                        reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)};
+                        output.Add(customer);
+                    }
+                    Console.WriteLine(output.Capacity);
+                    return output;
+                }
+                else return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        internal static Boolean UpdateCustomer(int customerId, string customerName, int addressId, int active, string createDate, string createdBy, string lastUpdateBy)
+        {
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(constring);
+                conn.Open();
+                //if (customerName == null || customerName == "" || password == null || password == "") return false;
+                //string sql = "update customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
+                //    "set ('" + customerName + "','" + addressId + "'," + active +", " + createDate + ",'" + createdBy + "', CURDATE() ,'" + lastUpdateBy + "')" +
+                //    "where customerId = " + customerId +";";
+                string sql = "update customer " +
+                    "set customerName = '" + customerName + "', addressId = " + addressId + ", active = " + active + ", createDate = '" + createDate +
+                    "', createdBy = '" + createdBy + "', lastUpdate = CURDATE(), lastUpdateBy ='" + lastUpdateBy +
+                    "' where customerId = " + customerId + ";"; 
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        internal static Boolean DeleteCustomer(int customerId)
+        {
+            try
+            {
+                MySqlConnection conn = new MySqlConnection(constring);
+                conn.Open();
+                string sql = "delete from customer where customerId = " + customerId + ";";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                return true;
+
+            }
+            catch
+            {
+                return false;
             }
         }
     }

@@ -19,14 +19,24 @@ namespace C969
         public login()
         {
             InitializeComponent();
-            ResourceManager rm = new ResourceManager("C969.strings",
+
+            ResourceManager pri = new ResourceManager("C969.strings_" + Utilities.getPrimaryCulture(),
                 Assembly.GetExecutingAssembly());
-            String user = rm.GetString("USERNAME", CultureInfo.CurrentCulture);
-            String pass = rm.GetString("PASSWORD", CultureInfo.CurrentCulture);
-            String login = rm.GetString("LOGIN", CultureInfo.CurrentCulture);
-            UserLabel.Text = user;
-            PassLabel.Text = pass;
-            SubmitButton.Text = login;
+            ResourceManager sec = new ResourceManager("C969.strings_" + Utilities.getSecondaryCulture(),
+                Assembly.GetExecutingAssembly());
+
+            Console.WriteLine(pri + " " + sec);
+
+            String userPri = pri.GetString("USERNAME");
+            String passPri = pri.GetString("PASSWORD");
+            String loginPri = pri.GetString("LOGIN");
+            UserLabelPri.Text = pri.GetString("USERNAME");
+            PassLabelPri.Text = pri.GetString("PASSWORD");
+            UserLabelSec.Text = sec.GetString("USERNAME");
+            PassLabelSec.Text = sec.GetString("PASSWORD");
+            SubmitButton.Text = pri.GetString("LOGIN") + " / " + sec.GetString("LOGIN");
         }
+
+
     }
 }

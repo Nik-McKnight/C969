@@ -29,17 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
-            this.UserLabel = new System.Windows.Forms.Label();
+            this.UserLabelSec = new System.Windows.Forms.Label();
             this.UserBox = new System.Windows.Forms.TextBox();
             this.SubmitButton = new System.Windows.Forms.Button();
             this.PassBox = new System.Windows.Forms.TextBox();
-            this.PassLabel = new System.Windows.Forms.Label();
+            this.PassLabelSec = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.PassLabelPri = new System.Windows.Forms.Label();
+            this.UserLabelPri = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // UserLabel
+            // UserLabelSec
             // 
-            resources.ApplyResources(this.UserLabel, "UserLabel");
-            this.UserLabel.Name = "UserLabel";
+            resources.ApplyResources(this.UserLabelSec, "UserLabelSec");
+            this.UserLabelSec.Name = "UserLabelSec";
             // 
             // UserBox
             // 
@@ -57,20 +60,38 @@
             resources.ApplyResources(this.PassBox, "PassBox");
             this.PassBox.Name = "PassBox";
             // 
-            // PassLabel
+            // PassLabelSec
             // 
-            resources.ApplyResources(this.PassLabel, "PassLabel");
-            this.PassLabel.Name = "PassLabel";
+            resources.ApplyResources(this.PassLabelSec, "PassLabelSec");
+            this.PassLabelSec.Name = "PassLabelSec";
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // PassLabelPri
+            // 
+            resources.ApplyResources(this.PassLabelPri, "PassLabelPri");
+            this.PassLabelPri.Name = "PassLabelPri";
+            // 
+            // UserLabelPri
+            // 
+            resources.ApplyResources(this.UserLabelPri, "UserLabelPri");
+            this.UserLabelPri.Name = "UserLabelPri";
             // 
             // login
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.PassLabelPri);
+            this.Controls.Add(this.UserLabelPri);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.PassBox);
-            this.Controls.Add(this.PassLabel);
+            this.Controls.Add(this.PassLabelSec);
             this.Controls.Add(this.SubmitButton);
             this.Controls.Add(this.UserBox);
-            this.Controls.Add(this.UserLabel);
+            this.Controls.Add(this.UserLabelSec);
             this.Name = "login";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -79,11 +100,14 @@
 
         #endregion
 
-        private System.Windows.Forms.Label UserLabel;
+        private System.Windows.Forms.Label UserLabelSec;
         private System.Windows.Forms.TextBox UserBox;
         private System.Windows.Forms.Button SubmitButton;
         private System.Windows.Forms.TextBox PassBox;
-        private System.Windows.Forms.Label PassLabel;
+        private System.Windows.Forms.Label PassLabelSec;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label PassLabelPri;
+        private System.Windows.Forms.Label UserLabelPri;
     }
 }
 

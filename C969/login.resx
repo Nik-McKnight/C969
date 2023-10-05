@@ -118,36 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="UserLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="UserLabelSec.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="UserLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 80</value>
+  <data name="UserLabelSec.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 61</value>
   </data>
-  <data name="UserLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
+  <data name="UserLabelSec.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
   </data>
-  <data name="UserLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="UserLabelSec.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="UserLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="UserLabelSec.Text" xml:space="preserve">
+    <value>Enter Username</value>
+  </data>
+  <data name="UserLabelSec.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;UserLabel.Name" xml:space="preserve">
-    <value>UserLabel</value>
+  <data name="&gt;&gt;UserLabelSec.Name" xml:space="preserve">
+    <value>UserLabelSec</value>
   </data>
-  <data name="&gt;&gt;UserLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;UserLabelSec.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;UserLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;UserLabelSec.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;UserLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;UserLabelSec.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="UserBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 96</value>
+    <value>211, 77</value>
   </data>
   <data name="UserBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -165,13 +168,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UserBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="SubmitButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 174</value>
+    <value>147, 213</value>
   </data>
   <data name="SubmitButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>224, 23</value>
   </data>
   <data name="SubmitButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -186,10 +189,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SubmitButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="PassBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 148</value>
+    <value>211, 164</value>
   </data>
   <data name="PassBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -207,33 +210,124 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PassBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="PassLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="PassLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 132</value>
-  </data>
-  <data name="PassLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 13</value>
-  </data>
-  <data name="PassLabel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="PassLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="PassLabelSec.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="PassLabelSec.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 148</value>
+  </data>
+  <data name="PassLabelSec.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="PassLabelSec.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="PassLabelSec.Text" xml:space="preserve">
+    <value>Enter Password</value>
+  </data>
+  <data name="PassLabelSec.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="&gt;&gt;PassLabel.Name" xml:space="preserve">
-    <value>PassLabel</value>
+  <data name="&gt;&gt;PassLabelSec.Name" xml:space="preserve">
+    <value>PassLabelSec</value>
   </data>
-  <data name="&gt;&gt;PassLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;PassLabelSec.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PassLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;PassLabelSec.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;PassLabel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;PassLabelSec.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 23</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="PassLabelPri.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="PassLabelPri.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="PassLabelPri.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 125</value>
+  </data>
+  <data name="PassLabelPri.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 13</value>
+  </data>
+  <data name="PassLabelPri.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="PassLabelPri.Text" xml:space="preserve">
+    <value>Enter Password</value>
+  </data>
+  <data name="PassLabelPri.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;PassLabelPri.Name" xml:space="preserve">
+    <value>PassLabelPri</value>
+  </data>
+  <data name="&gt;&gt;PassLabelPri.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PassLabelPri.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;PassLabelPri.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="UserLabelPri.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="UserLabelPri.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="UserLabelPri.Location" type="System.Drawing.Point, System.Drawing">
+    <value>219, 38</value>
+  </data>
+  <data name="UserLabelPri.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 13</value>
+  </data>
+  <data name="UserLabelPri.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="UserLabelPri.Text" xml:space="preserve">
+    <value>Enter Username</value>
+  </data>
+  <data name="UserLabelPri.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;UserLabelPri.Name" xml:space="preserve">
+    <value>UserLabelPri</value>
+  </data>
+  <data name="&gt;&gt;UserLabelPri.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;UserLabelPri.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;UserLabelPri.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

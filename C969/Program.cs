@@ -1,10 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Reflection;
+using System.Resources;
+using System.Globalization;
 
 namespace C969
 {
@@ -48,12 +47,11 @@ namespace C969
             //}
             conn.Close();
 
-            System.Threading.Thread.CurrentThread.CurrentCulture =
-            System.Globalization.CultureInfo.GetCultureInfo("de");
+            // Change this to test different cultures
+            //System.Threading.Thread.CurrentThread.CurrentCulture =
+            //System.Globalization.CultureInfo.GetCultureInfo("es-MX");
 
-            System.Threading.Thread.CurrentThread.CurrentUICulture =
-                System.Globalization.CultureInfo.GetCultureInfo("de");
-
+            Console.WriteLine(System.Globalization.CultureInfo.CurrentCulture);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

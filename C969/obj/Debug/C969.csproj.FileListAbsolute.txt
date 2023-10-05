@@ -41,4 +41,5 @@ C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.csproj.Co
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.exe
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.pdb
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.login.resources
-C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.strings.resources
+C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.strings_en-us.resources
+C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.strings_es-MX.resources

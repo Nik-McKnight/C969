@@ -37,6 +37,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.PassLabelPri = new System.Windows.Forms.Label();
             this.UserLabelPri = new System.Windows.Forms.Label();
+            this.RegisterButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // UserLabelSec
@@ -48,17 +49,20 @@
             // 
             resources.ApplyResources(this.UserBox, "UserBox");
             this.UserBox.Name = "UserBox";
+            this.UserBox.TextChanged += new System.EventHandler(this.UserBox_TextChanged);
             // 
             // SubmitButton
             // 
             resources.ApplyResources(this.SubmitButton, "SubmitButton");
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.UseVisualStyleBackColor = true;
+            this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 
             // PassBox
             // 
             resources.ApplyResources(this.PassBox, "PassBox");
             this.PassBox.Name = "PassBox";
+            this.PassBox.TextChanged += new System.EventHandler(this.PassBox_TextChanged);
             // 
             // PassLabelSec
             // 
@@ -80,10 +84,18 @@
             resources.ApplyResources(this.UserLabelPri, "UserLabelPri");
             this.UserLabelPri.Name = "UserLabelPri";
             // 
+            // RegisterButton
+            // 
+            resources.ApplyResources(this.RegisterButton, "RegisterButton");
+            this.RegisterButton.Name = "RegisterButton";
+            this.RegisterButton.UseVisualStyleBackColor = true;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
+            // 
             // login
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.PassLabelPri);
             this.Controls.Add(this.UserLabelPri);
             this.Controls.Add(this.label1);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label PassLabelPri;
         private System.Windows.Forms.Label UserLabelPri;
+        private System.Windows.Forms.Button RegisterButton;
     }
 }
 

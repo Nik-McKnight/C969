@@ -1,42 +1,96 @@
-﻿using C969.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+﻿using System;
 using System.Reflection;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace C969
 {
     public partial class login : Form
     {
+        ResourceManager pri;
+        ResourceManager sec;
         public login()
         {
             InitializeComponent();
 
-            ResourceManager pri = new ResourceManager("C969.strings_" + Utilities.getPrimaryCulture(),
+            pri = new ResourceManager("C969.strings_" + Utilities.GetPrimaryCulture(),
                 Assembly.GetExecutingAssembly());
-            ResourceManager sec = new ResourceManager("C969.strings_" + Utilities.getSecondaryCulture(),
+            sec = new ResourceManager("C969.strings_" + Utilities.GetSecondaryCulture(),
                 Assembly.GetExecutingAssembly());
 
-            Console.WriteLine(pri + " " + sec);
+            string loginTruePri = pri.GetString("LOGINTRUE");
+            string loginFalsePri = pri.GetString("LOGINFALSE");
 
-            String userPri = pri.GetString("USERNAME");
-            String passPri = pri.GetString("PASSWORD");
-            String loginPri = pri.GetString("LOGIN");
+
             UserLabelPri.Text = pri.GetString("USERNAME");
             PassLabelPri.Text = pri.GetString("PASSWORD");
             UserLabelSec.Text = sec.GetString("USERNAME");
             PassLabelSec.Text = sec.GetString("PASSWORD");
             SubmitButton.Text = pri.GetString("LOGIN") + " / " + sec.GetString("LOGIN");
+            RegisterButton.Text = pri.GetString("REGISTER") + " / " + sec.GetString("REGISTER");
         }
 
+        internal Boolean LogIn()
+        {
+            if (Utilities.LoginQuery(this.UserBox.Text, this.PassBox.Text))
+            {
+                MessageBox.Show(pri.GetString("LOGINTRUE"));
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(pri.GetString("LOGINFALSE"));
+                return false;
+            }
+        }
 
+        internal Boolean Register()
+        {
+            if (Utilities.CreateUser(this.UserBox.Text, this.PassBox.Text))
+            {
+                MessageBox.Show(pri.GetString("REGISTERTRUE"));
+                return true;
+            }
+            else
+            {
+                MessageBox.Show(pri.GetString("REGISTERFALSE"));
+                return false;
+            }
+        }
+
+        internal void EnableButtons()
+        {
+            if (UserBox.Text != "" && PassBox.Text != "")
+            {
+                SubmitButton.Enabled = true;
+                RegisterButton.Enabled = true;
+            }
+            else
+            {
+                SubmitButton.Enabled = false;
+                RegisterButton.Enabled = false;
+            }
+        }
+
+        private void SubmitButton_Click(object sender, EventArgs e)
+        {
+            LogIn();
+            
+        }
+
+        private void RegisterButton_Click(object sender, EventArgs e)
+        {
+            Register();
+        }
+
+        private void UserBox_TextChanged(object sender, EventArgs e)
+        {
+            EnableButtons();
+        }
+
+        private void PassBox_TextChanged(object sender, EventArgs e)
+        {
+            EnableButtons();
+        }
     }
 }

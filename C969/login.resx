@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UserLabelSec.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="UserBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>211, 77</value>
@@ -168,7 +168,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UserBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
+  </data>
+  <data name="SubmitButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="SubmitButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>147, 213</value>
@@ -189,7 +192,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SubmitButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="PassBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>211, 164</value>
@@ -210,7 +213,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PassBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="PassLabelSec.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -240,7 +243,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PassLabelSec.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -261,7 +264,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="PassLabelPri.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -295,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PassLabelPri.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="UserLabelPri.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -328,7 +331,34 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UserLabelPri.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="RegisterButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="RegisterButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RegisterButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>147, 242</value>
+  </data>
+  <data name="RegisterButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 23</value>
+  </data>
+  <data name="RegisterButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;RegisterButton.Name" xml:space="preserve">
+    <value>RegisterButton</value>
+  </data>
+  <data name="&gt;&gt;RegisterButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RegisterButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;RegisterButton.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

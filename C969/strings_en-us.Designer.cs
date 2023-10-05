@@ -70,11 +70,47 @@ namespace C969 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Incorrect username or password.
+        /// </summary>
+        internal static string LOGINFALSE {
+            get {
+                return ResourceManager.GetString("LOGINFALSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logged in.
+        /// </summary>
+        internal static string LOGINTRUE {
+            get {
+                return ResourceManager.GetString("LOGINTRUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter Password.
         /// </summary>
         internal static string PASSWORD {
             get {
                 return ResourceManager.GetString("PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username already exists.
+        /// </summary>
+        internal static string REGISTERFALSE {
+            get {
+                return ResourceManager.GetString("REGISTERFALSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created user.
+        /// </summary>
+        internal static string REGISTERTRUE {
+            get {
+                return ResourceManager.GetString("REGISTERTRUE", resourceCulture);
             }
         }
         

@@ -37,12 +37,11 @@ namespace C969
         static string password = "nikk";
         //string password = "test";
         static string constring = "SERVER="+server+";DATABASE="+database+";UID="+username+";PASSWORD="+password+";";
+        static MySqlConnection conn = new MySqlConnection(constring);
 
 
         internal static void SeedData()
         {
-            // Create mysql connection
-            MySqlConnection conn = new MySqlConnection(constring);
             conn.Open();
             SeedData seed = new SeedData(conn);
             Console.WriteLine("Done.");
@@ -51,8 +50,6 @@ namespace C969
 
         internal static void ExampleQuery()
         {
-            // Create mysql connection
-            MySqlConnection conn = new MySqlConnection(constring);
             conn.Open();
 
             string query = "select * from user";
@@ -74,7 +71,6 @@ namespace C969
 
         internal static Boolean LoginQuery(string username, string password)
         {
-            MySqlConnection conn = new MySqlConnection(constring);
             conn.Open();
 
             string query = "select * from user where userName = '" + username + "' and password = '" + password + "';";
@@ -89,7 +85,6 @@ namespace C969
 
         internal static Boolean UserNameExists(string username)
         {
-            MySqlConnection conn = new MySqlConnection(constring);
             conn.Open();
 
             string query = "select * from user where userName = '" + username + "';";
@@ -105,7 +100,6 @@ namespace C969
         internal static Boolean CreateUser(string userName, string password)
         {
             try { 
-                MySqlConnection conn = new MySqlConnection(constring);
                 conn.Open();
                 if (userName == null || userName == "" || password == null || password == "") return false;
                 string sql = "INSERT INTO user (userName, password, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
@@ -125,7 +119,6 @@ namespace C969
         {
             try
             {
-                MySqlConnection conn = new MySqlConnection(constring);
                 conn.Open();
                 //if (customerName == null || customerName == "" || password == null || password == "") return false;
                 string sql = "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
@@ -145,7 +138,6 @@ namespace C969
         {
             try
             {
-                MySqlConnection conn = new MySqlConnection(constring);
                 conn.Open();
                 string sql = "select * from customer where customerId = " + customerId + ";";
                 Console.WriteLine(sql);
@@ -176,7 +168,6 @@ namespace C969
             ArrayList output = new ArrayList();
             try
             {
-                MySqlConnection conn = new MySqlConnection(constring);
                 conn.Open();
                 string sql = "select * from customer;";
                 Console.WriteLine(sql);
@@ -204,7 +195,6 @@ namespace C969
         {
             try
             {
-                MySqlConnection conn = new MySqlConnection(constring);
                 conn.Open();
                 //if (customerName == null || customerName == "" || password == null || password == "") return false;
                 //string sql = "update customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
@@ -229,7 +219,6 @@ namespace C969
         {
             try
             {
-                MySqlConnection conn = new MySqlConnection(constring);
                 conn.Open();
                 string sql = "delete from customer where customerId = " + customerId + ";";
                 Console.WriteLine(sql);

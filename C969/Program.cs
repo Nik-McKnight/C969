@@ -20,8 +20,8 @@ namespace C969
             //System.Globalization.CultureInfo.GetCultureInfo("es-MX");
 
             // Enable this to seed database
-            Utilities.SeedData();
-            Utilities.DeleteCustomer(1);
+            //Utilities.SeedData();
+            Utilities.DeleteCustomer(2);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

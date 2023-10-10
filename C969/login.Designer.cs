@@ -1,6 +1,6 @@
 ﻿namespace C969
 {
-    partial class login
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.UserLabelSec = new System.Windows.Forms.Label();
             this.UserBox = new System.Windows.Forms.TextBox();
             this.SubmitButton = new System.Windows.Forms.Button();

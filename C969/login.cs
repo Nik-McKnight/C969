@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace C969
 {
-    public partial class login : Form
+    public partial class Login : Form
     {
         ResourceManager pri;
         ResourceManager sec;
-        public login()
+        public Login()
         {
             InitializeComponent();
 

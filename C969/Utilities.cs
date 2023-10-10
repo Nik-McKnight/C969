@@ -87,7 +87,7 @@ namespace C969
 
         internal static Boolean CreateUser(string userName, string password)
         {
-            try { 
+            try {
                 conn.Open();
                 if (userName == null || userName == "" || password == null || password == "") return false;
                 string sql = "INSERT INTO user (userName, password, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
@@ -203,7 +203,7 @@ namespace C969
                 string sql = "update customer " +
                     "set customerName = '" + customerName + "', addressId = " + addressId + ", active = " + active + ", createDate = '" + createDate +
                     "', createdBy = '" + createdBy + "', lastUpdate = CURDATE(), lastUpdateBy ='" + lastUpdateBy +
-                    "' where customerId = " + customerId + ";"; 
+                    "' where customerId = " + customerId + ";";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
@@ -405,6 +405,48 @@ namespace C969
             }
         }
 
+        internal static string[][] ReadUserAppointmentsByDate(int userId, string dateTime)
+        {
+            string[][] output = { };
+            try
+            {
+                conn.Open();
+                string sql = "select customerName, title, description, location, " +
+                    "contact, type, url, start, end from appointment right join " +
+                    "customer on appointment.customerId = customer.customerId" +
+                    " where userId = " + userId + " and start like '%"+dateTime +"%';";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                                            reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                                            reader.GetString(8)};
+                        int length = output.Length;
+                        Array.Resize(ref output, length + 1);
+                        output[length] = (appointment);
+                    }
+                    Console.WriteLine(output.Length);
+                    conn.Close();
+                    return output;
+                }
+                else
+                {
+                    conn.Close();
+                    return null;
+                }
+            }
+            catch
+            {
+                conn.Close();
+                return null;
+            }
+        }
+
+
 
         internal static Boolean UpdateAppointment(int appointmentId, int customerId, int userId, string title, string description, string location,
                                                   string contact, string type, string url, string start, string end,
@@ -449,6 +491,19 @@ namespace C969
                 conn.Close();
                 return false;
             }
+        }
+
+        internal static string ConvertDate(string calDate)
+        {
+            // Lambda 1: I needed to pad two different strings, but I don't need to do it outside of this function.
+            Func<string, string> Pad = x => "0" + x;
+            string[] split = calDate.Split('/');
+            string month = split[0];
+            if (month.Length == 1) month = Pad(month);
+            string day = split[1];
+            if (day.Length == 1) day = Pad(day);
+            string year = split[2];
+            return year + "-" + month + "-" + day;
         }
     }
 }

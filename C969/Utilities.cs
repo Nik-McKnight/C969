@@ -140,7 +140,6 @@ namespace C969
                     {
                         string[] output = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                             reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)};
-                        Console.WriteLine(output[1]);
                         conn.Close();
                         return output;
                     }
@@ -178,7 +177,6 @@ namespace C969
                         reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)};
                         output.Add(customer);
                     }
-                    Console.WriteLine(output.Capacity);
                     conn.Close();
                     return output;
                 }
@@ -259,6 +257,26 @@ namespace C969
             }
         }
 
+        internal static void addAppointmentInFourteenMinutes()
+        {
+            // Lamba 2: I wanted to easily add 14 minutes to a Datetime and convert it into the format acceptable by the database.
+            Func<DateTime, string> convertTo24Hours = x =>
+            {
+                return x.Add(new TimeSpan(0,14,0)).ToString("yyyy-MM-dd HH:mm:ss");
+            };
+            conn.Open();
+
+            //Utilities.CreateAppointment(2, 1, "test", "test", "test", "test", "test", "test", Utilities.ConvertDate(DateTime.Now.ToString()), Utilities.ConvertDate(DateTime.Now.ToString()), "test");
+
+            string sql = "INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, " +
+                         "createDate, createdBy, lastUpdate, lastUpdateBy) " +
+                "VALUES (3,1, 'test', 'test', 'test', 'test', 'test', 'test','" + convertTo24Hours(DateTime.UtcNow) +"','"+convertTo24Hours(DateTime.UtcNow) +"','"+convertTo24Hours(DateTime.UtcNow) +"', 'test', '" + convertTo24Hours(DateTime.UtcNow) + "','test'); ";
+            Console.WriteLine(sql);
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
         internal static string[] ReadAppointment(int appointmentId)
         {
             try
@@ -314,7 +332,6 @@ namespace C969
                                             reader.GetString(12), reader.GetString(13), reader.GetString(14)};
                         output.Add(appointment);
                     }
-                    Console.WriteLine(output.Capacity);
                     conn.Close();
                     return output;
                 }
@@ -351,7 +368,6 @@ namespace C969
                                             reader.GetString(12), reader.GetString(13), reader.GetString(14)};
                         output.Add(appointment);
                     }
-                    Console.WriteLine(output.Capacity);
                     conn.Close();
                     return output;
                 }
@@ -368,13 +384,16 @@ namespace C969
             }
         }
 
-        internal static ArrayList ReadAllAppointmentsByUser(int userId)
+        internal static string[][] ReadAllAppointmentsByUser(int userId)
         {
-            ArrayList output = new ArrayList();
+            string[][] output = { };
             try
             {
                 conn.Open();
-                string sql = "select * from appointment where userId = " + userId + ";";
+                string sql = "select customerName, title, description, location, " +
+                    "contact, type, url, start, end from appointment right join " +
+                    "customer on appointment.customerId = customer.customerId" +
+                    " where userId = '" + userId + "';"; 
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -384,11 +403,11 @@ namespace C969
                     {
                         string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                             reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                                            reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11),
-                                            reader.GetString(12), reader.GetString(13), reader.GetString(14)};
-                        output.Add(appointment);
+                                            reader.GetString(8)};
+                        int length = output.Length;
+                        Array.Resize(ref output, length + 1);
+                        output[length] = (appointment);
                     }
-                    Console.WriteLine(output.Capacity);
                     conn.Close();
                     return output;
                 }
@@ -429,7 +448,6 @@ namespace C969
                         Array.Resize(ref output, length + 1);
                         output[length] = (appointment);
                     }
-                    Console.WriteLine(output.Length);
                     conn.Close();
                     return output;
                 }
@@ -508,23 +526,31 @@ namespace C969
 
         internal static DateTime ConvertToLocalTime(string date)
         {
-            // Lamba 2: I wanted to easily add an hour to the local DateTime value if DST is in effect.
-            Func<DateTime, DateTime> addDST = x =>
-            {
-                System.Globalization.DaylightTime dl = TimeZone.CurrentTimeZone.GetDaylightChanges(DateTime.Now.Year);
-                if (x >= dl.Start && x <= dl.End)
-                {
-                    return x.Add(new TimeSpan(1, 0, 0));
-                }
-                return x;
-            };
-            Console.WriteLine(date);
             DateTime dt = DateTime.Parse(date);
             TimeZone curTimeZone = TimeZone.CurrentTimeZone;
             TimeSpan currentOffset = curTimeZone.GetUtcOffset(DateTime.Now);
-            DateTime local = addDST(dt.Add(currentOffset));
-            Console.WriteLine(local);
-            return local;
+            //DateTime local = addDST(dt.Add(currentOffset));
+            return dt.Add(currentOffset);
+        }
+
+        internal static Boolean checkForUpcomingAppointment(User user)
+        {
+            string[][] appointments = ReadAllAppointmentsByUser(user.userId);
+            if (appointments != null)
+            {
+                DateTime login = DateTime.UtcNow;
+                DateTime start;
+                TimeSpan timeSpan;
+                foreach (string[] appointment in appointments)
+                {
+                    start = DateTime.Parse(appointment[7]);
+                    timeSpan = start - login;
+                    Console.WriteLine(timeSpan.ToString());
+                    if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes < 15) return true;
+                }
+                return false;
+            }
+            return false;
         }
     }
 }

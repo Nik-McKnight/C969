@@ -13,13 +13,13 @@ namespace C969
 {
     public partial class Calendar : Form
     {
-        internal ArrayList userAppointments;
+        internal string[][] userAppointments;
         internal int userId;
         public Calendar(User user)
         {
             InitializeComponent();
-            userAppointments = Utilities.ReadAllAppointmentsByUser(userId);
             this.userId = user.userId;
+            userAppointments = Utilities.ReadAllAppointmentsByUser(userId);
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)

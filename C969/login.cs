@@ -34,10 +34,13 @@ namespace C969
         internal Boolean LogIn()
         {
             string[] user = Utilities.LoginQuery(this.UserBox.Text, this.PassBox.Text);
-            if (user.Length != null)
+            if (user != null)
             {
                 this.user = new User(user);
-                MessageBox.Show(pri.GetString("LOGINTRUE"));
+                if (Utilities.checkForUpcomingAppointment(this.user) == true)
+                {
+                    MessageBox.Show("You have an appointment in the next 15 minutes!");
+                }
                 var calendar = new Calendar(this.user);
                 calendar.Show();
                 return true;

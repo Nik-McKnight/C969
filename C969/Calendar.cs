@@ -15,11 +15,11 @@ namespace C969
     {
         internal ArrayList userAppointments;
         internal int userId;
-        public Calendar(int userId)
+        public Calendar(User user)
         {
             InitializeComponent();
             userAppointments = Utilities.ReadAllAppointmentsByUser(userId);
-            this.userId = userId;
+            this.userId = user.userId;
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)

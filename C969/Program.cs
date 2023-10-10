@@ -24,8 +24,8 @@ namespace C969
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new Login());
-            Application.Run(new Calendar(1));
+            Application.Run(new Login());
+            //Application.Run(new Calendar(1));
 
 
         }

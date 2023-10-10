@@ -9,6 +9,7 @@ namespace C969
     {
         ResourceManager pri;
         ResourceManager sec;
+        User user;
         public Login()
         {
             InitializeComponent();
@@ -32,9 +33,13 @@ namespace C969
 
         internal Boolean LogIn()
         {
-            if (Utilities.LoginQuery(this.UserBox.Text, this.PassBox.Text))
+            string[] user = Utilities.LoginQuery(this.UserBox.Text, this.PassBox.Text);
+            if (user.Length != null)
             {
+                this.user = new User(user);
                 MessageBox.Show(pri.GetString("LOGINTRUE"));
+                var calendar = new Calendar(this.user);
+                calendar.Show();
                 return true;
             }
             else

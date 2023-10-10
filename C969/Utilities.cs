@@ -48,23 +48,23 @@ namespace C969
             conn.Close();
         }
 
-        internal static Boolean LoginQuery(string username, string password)
+        internal static string[] LoginQuery(string username, string password)
         {
             conn.Open();
-
             string query = "select * from user where userName = '" + username + "' and password = '" + password + "';";
             MySqlCommand cmd = new MySqlCommand(query, conn);
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
-                conn.Close();
-                return true;
+                while (reader.Read())
+                {
+                    string[] output = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)};
+                    conn.Close();
+                    return output;
+                }
             }
-            else
-            {
-                conn.Close();
-                return false;
-            }
+            conn.Close();
+            return null;
         }
 
         internal static Boolean UserNameExists(string username)

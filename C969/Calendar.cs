@@ -28,8 +28,7 @@ namespace C969
             string[][] tempAppointments = Utilities.ReadUserAppointmentsByDate(userId, dateTime);
             if (tempAppointments == null)
             {
-                //MessageBox.Show("No appointments on this day");
-                Utilities.ConvertToLocalTime(dateTime + " 00:00:00");
+                MessageBox.Show("No appointments on this day");
 
             }
             else

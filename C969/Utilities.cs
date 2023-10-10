@@ -526,6 +526,5 @@ namespace C969
             Console.WriteLine(local);
             return local;
         }
-
     }
 }

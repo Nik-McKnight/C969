@@ -42,6 +42,8 @@ namespace C969
                 {
                     try
                     {
+                        appointment[7] = Utilities.ConvertToLocalTime(appointment[7]).ToString();
+                        appointment[8] = Utilities.ConvertToLocalTime(appointment[8]).ToString();
                         listView1.Items.Add(new ListViewItem(appointment));
                     }
                     catch

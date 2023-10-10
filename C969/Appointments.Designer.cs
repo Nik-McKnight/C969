@@ -36,7 +36,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(25, 21);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1782, 246);
+            this.listView1.Size = new System.Drawing.Size(1782, 578);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -45,7 +45,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1829, 450);
+            this.ClientSize = new System.Drawing.Size(1829, 624);
             this.Controls.Add(this.listView1);
             this.Name = "Appointments";
             this.Text = "Appointments";

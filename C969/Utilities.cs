@@ -505,5 +505,27 @@ namespace C969
             string year = split[2];
             return year + "-" + month + "-" + day;
         }
+
+        internal static DateTime ConvertToLocalTime(string date)
+        {
+            // Lamba 2: I wanted to easily add an hour to the local DateTime value if DST is in effect.
+            Func<DateTime, DateTime> addDST = x =>
+            {
+                System.Globalization.DaylightTime dl = TimeZone.CurrentTimeZone.GetDaylightChanges(DateTime.Now.Year);
+                if (x >= dl.Start && x <= dl.End)
+                {
+                    return x.Add(new TimeSpan(1, 0, 0));
+                }
+                return x;
+            };
+            Console.WriteLine(date);
+            DateTime dt = DateTime.Parse(date);
+            TimeZone curTimeZone = TimeZone.CurrentTimeZone;
+            TimeSpan currentOffset = curTimeZone.GetUtcOffset(DateTime.Now);
+            DateTime local = addDST(dt.Add(currentOffset));
+            Console.WriteLine(local);
+            return local;
+        }
+
     }
 }

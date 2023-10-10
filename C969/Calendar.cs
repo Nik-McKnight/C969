@@ -26,11 +26,11 @@ namespace C969
         {
             string dateTime = Utilities.ConvertDate(e.Start.ToShortDateString());
             string[][] tempAppointments = Utilities.ReadUserAppointmentsByDate(userId, dateTime);
-            //object tempLine = tempAppointments[0];
-            //string[] arr = CastObjToStringArray(tempLine);
             if (tempAppointments == null)
             {
-                MessageBox.Show("No appointments on this day");
+                //MessageBox.Show("No appointments on this day");
+                Utilities.ConvertToLocalTime(dateTime + " 00:00:00");
+
             }
             else
             {

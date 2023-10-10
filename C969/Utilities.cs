@@ -545,7 +545,6 @@ namespace C969
                 {
                     start = DateTime.Parse(appointment[7]);
                     timeSpan = start - login;
-                    Console.WriteLine(timeSpan.ToString());
                     if (timeSpan.TotalMinutes > 0 && timeSpan.TotalMinutes < 15) return true;
                 }
                 return false;

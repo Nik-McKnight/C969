@@ -21,11 +21,11 @@ namespace C969
 
             // Enable this to seed database
             //Utilities.SeedData();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Utilities.addAppointmentInFourteenMinutes();
             Application.Run(new Login());
-            //Application.Run(new Calendar(1));
 
 
         }

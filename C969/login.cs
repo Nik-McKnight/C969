@@ -39,7 +39,7 @@ namespace C969
                 this.user = new User(user);
                 if (Utilities.checkForUpcomingAppointment(this.user) == true)
                 {
-                    MessageBox.Show("You have an appointment in the next 15 minutes!");
+                    MessageBox.Show(pri.GetString("APPOINTMENT") + " / " + sec.GetString("APPOINTMENT"));
                 }
                 var calendar = new Calendar(this.user);
                 calendar.Show();
@@ -47,7 +47,7 @@ namespace C969
             }
             else
             {
-                MessageBox.Show(pri.GetString("LOGINFALSE"));
+                MessageBox.Show(pri.GetString("LOGINFALSE") + " / " + sec.GetString("LOGINFALSE"));
                 return false;
             }
         }

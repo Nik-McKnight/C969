@@ -61,6 +61,15 @@ namespace C969 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have an appointment in the next 15 minutes!.
+        /// </summary>
+        internal static string APPOINTMENT {
+            get {
+                return ResourceManager.GetString("APPOINTMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log In.
         /// </summary>
         internal static string LOGIN {

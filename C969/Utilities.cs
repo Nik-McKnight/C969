@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -550,6 +551,19 @@ namespace C969
                 return false;
             }
             return false;
+        }
+
+        internal static void Log(User user)
+        {
+            // Write file using StreamWriter
+            using (StreamWriter writer = new StreamWriter("../../Log.txt", true))
+            {
+                string log = $"Login Time: {DateTime.Now.ToString()}, User ID: {user.userId}, Username: {user.userName}";
+                writer.WriteLine(log);
+            }
+            // Read a file
+            string readText = File.ReadAllText("Log.txt");
+            Console.WriteLine(readText);
         }
     }
 }

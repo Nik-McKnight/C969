@@ -37,6 +37,7 @@ namespace C969
             if (user != null)
             {
                 this.user = new User(user);
+                Utilities.Log(this.user);
                 if (Utilities.checkForUpcomingAppointment(this.user) == true)
                 {
                     MessageBox.Show(pri.GetString("APPOINTMENT") + " / " + sec.GetString("APPOINTMENT"));

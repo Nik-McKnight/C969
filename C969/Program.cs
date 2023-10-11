@@ -26,8 +26,6 @@ namespace C969
             Application.SetCompatibleTextRenderingDefault(false);
             Utilities.addAppointmentInFourteenMinutes();
             Application.Run(new Login());
-
-
         }
     }
 }

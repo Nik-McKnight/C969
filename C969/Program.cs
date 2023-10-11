@@ -24,7 +24,16 @@ namespace C969
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Utilities.addAppointmentInFourteenMinutes();
+
+            // Enable this to add an appointment in fourteen minutes for userId 1. Used to test appointment reminder.
+            //Utilities.addAppointmentInFourteenMinutes();
+
+            // Enable this to add an appointments over the next week for userId 1. Used to test weekly calendar.
+            //Utilities.addAppointmentsOverNextWeek();
+
+            //string[][][] test = Utilities.ReadUserAppointmentsNextWeek(1, DateTime.Now);
+            //Console.WriteLine(test[0].Length);
+
             Application.Run(new Login());
         }
     }

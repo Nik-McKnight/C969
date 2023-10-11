@@ -45,3 +45,4 @@ C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.strings_e
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.strings_es-MX.resources
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.Calendar.resources
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.Appointments.resources
+C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.WeeklyCalendar.resources

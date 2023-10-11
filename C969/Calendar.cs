@@ -14,18 +14,18 @@ namespace C969
     public partial class Calendar : Form
     {
         internal string[][] userAppointments;
-        internal int userId;
+        internal User user;
         public Calendar(User user)
         {
             InitializeComponent();
-            this.userId = user.userId;
-            userAppointments = Utilities.ReadAllAppointmentsByUser(userId);
+            this.user = user;
+            userAppointments = Utilities.ReadAllAppointmentsByUser(this.user.userId);
         }
 
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
             string dateTime = Utilities.ConvertDate(e.Start.ToShortDateString());
-            string[][] tempAppointments = Utilities.ReadUserAppointmentsByDate(userId, dateTime);
+            string[][] tempAppointments = Utilities.ReadUserAppointmentsByDate(this.user.userId, dateTime);
             if (tempAppointments == null)
             {
                 MessageBox.Show("No appointments on this day");
@@ -36,6 +36,12 @@ namespace C969
                 var appointments = new Appointments(tempAppointments);
                 appointments.Show();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            WeeklyCalendar wc = new WeeklyCalendar(this.user);
+            wc.Show();
         }
     }
 }

@@ -261,20 +261,56 @@ namespace C969
         internal static void addAppointmentInFourteenMinutes()
         {
             // Lamba 2: I wanted to easily add 14 minutes to a Datetime and convert it into the format acceptable by the database.
-            Func<DateTime, string> convertTo24Hours = x =>
+            Func<DateTime, string> addFourteen = x =>
             {
                 return x.Add(new TimeSpan(0,14,0)).ToString("yyyy-MM-dd HH:mm:ss");
             };
             conn.Open();
 
-            //Utilities.CreateAppointment(2, 1, "test", "test", "test", "test", "test", "test", Utilities.ConvertDate(DateTime.Now.ToString()), Utilities.ConvertDate(DateTime.Now.ToString()), "test");
-
             string sql = "INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, " +
                          "createDate, createdBy, lastUpdate, lastUpdateBy) " +
-                "VALUES (3,1, 'test', 'test', 'test', 'test', 'test', 'test','" + convertTo24Hours(DateTime.UtcNow) +"','"+convertTo24Hours(DateTime.UtcNow) +"','"+convertTo24Hours(DateTime.UtcNow) +"', 'test', '" + convertTo24Hours(DateTime.UtcNow) + "','test'); ";
+                "VALUES (3,1, 'test', 'test', 'test', 'test', 'test', 'test','" + addFourteen(DateTime.UtcNow) +"','"+addFourteen(DateTime.UtcNow) +"','"+addFourteen(DateTime.UtcNow) +"', 'test', '" + addFourteen(DateTime.UtcNow) + "','test'); ";
             Console.WriteLine(sql);
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        internal static void addAppointmentsOverNextWeek()
+        {
+            // Lamba 3: I wanted to easily add one day to a Datetime.
+            Func<DateTime, DateTime> addOneDay = x =>
+            {
+                return x.Add(new TimeSpan(24,0, 0));
+            };
+            conn.Open();
+
+            Func<DateTime, DateTime> addApp = x =>
+            {
+                string sql = "INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, " +
+             "createDate, createdBy, lastUpdate, lastUpdateBy) " +
+            "VALUES (3,1, 'test', 'test', 'test', 'test', 'test', 'test','" + x.ToString("yyyy-MM-dd") +" 18:00:00','"+  x.ToString("yyyy-MM-dd") + " 18:00:00','"
+            +  x.ToString("yyyy-MM-dd") +" 18:00:00', 'test', '" +  x.ToString("yyyy-MM-dd") + " 18:00:00','test'); ";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                return DateTime.Now;
+            };
+
+            DateTime today = DateTime.Today;
+            DateTime plus1 = addOneDay(today);
+            DateTime plus2 = addOneDay(plus1);
+            DateTime plus3 = addOneDay(plus2);
+            DateTime plus4 = addOneDay(plus3);
+            DateTime plus5 = addOneDay(plus4);
+
+            addApp(today);
+            addApp(plus1);
+            addApp(plus2);
+            addApp(plus3);
+            addApp(plus4);
+            addApp(plus5);
+
             conn.Close();
         }
 
@@ -434,7 +470,7 @@ namespace C969
                 string sql = "select customerName, title, description, location, " +
                     "contact, type, url, start, end from appointment right join " +
                     "customer on appointment.customerId = customer.customerId" +
-                    " where userId = " + userId + " and start like '%"+dateTime +"%';";
+                    " where userId = " + userId + " and start like '"+dateTime +"%';";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -464,6 +500,52 @@ namespace C969
                 return null;
             }
         }
+
+        internal static string[][][] ReadUserAppointmentsNextWeek(int userId, DateTime dateTime)
+        {
+            string[][][] output = new string[7][][];
+            string[][] day = { };
+            try
+            {
+                //string sql = "select customerName, title, description, location, " +
+                //    "contact, type, url, start, end from appointment right join " +
+                //    "customer on appointment.customerId = customer.customerId" +
+                //    " where userId = " + userId + " and start like '"+dateTime +"%';";
+                //Console.WriteLine(sql);
+                //MySqlCommand cmd = new MySqlCommand(sql, conn);
+                //MySqlDataReader reader = cmd.ExecuteReader();
+                //if (reader.HasRows)
+                //{
+                //    while (reader.Read())
+                //    {
+                //        string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                //                            reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                //                            reader.GetString(8)};
+                //        int length = output.Length;
+                //        Array.Resize(ref output, length + 1);
+                //        output[length] = (day);
+                //    }
+                //    conn.Close();
+                //    return day;
+                //}
+                //else
+                //{
+                //    conn.Close();
+                //    return null;
+                //}
+                output[0] = ReadUserAppointmentsByDate(userId, dateTime.ToString("yyyy-MM-dd"));
+                for (int i = 1; i < 7; i++)
+                {
+                    output[i] = ReadUserAppointmentsByDate(userId, dateTime.Add(new TimeSpan(24*i,0,0)).ToString("yyyy-MM-dd"));
+                }
+                return output;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
 
 
 
@@ -555,15 +637,11 @@ namespace C969
 
         internal static void Log(User user)
         {
-            // Write file using StreamWriter
             using (StreamWriter writer = new StreamWriter("../../Log.txt", true))
             {
                 string log = $"Login Time: {DateTime.Now.ToString()}, User ID: {user.userId}, Username: {user.userName}";
                 writer.WriteLine(log);
             }
-            // Read a file
-            string readText = File.ReadAllText("Log.txt");
-            Console.WriteLine(readText);
         }
     }
 }

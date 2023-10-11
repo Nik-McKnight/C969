@@ -30,12 +30,13 @@
         {
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.button1 = new System.Windows.Forms.Button();
+            this.ReportsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(14, 14);
-            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.monthCalendar1.Margin = new System.Windows.Forms.Padding(5);
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 0;
             this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
@@ -50,14 +51,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // ReportsButton
+            // 
+            this.ReportsButton.Location = new System.Drawing.Point(291, 14);
+            this.ReportsButton.Name = "ReportsButton";
+            this.ReportsButton.Size = new System.Drawing.Size(233, 23);
+            this.ReportsButton.TabIndex = 2;
+            this.ReportsButton.Text = "Generate Reports";
+            this.ReportsButton.UseVisualStyleBackColor = true;
+            this.ReportsButton.Click += new System.EventHandler(this.ReportsButton_Click);
+            // 
             // Calendar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 240);
+            this.ClientSize = new System.Drawing.Size(564, 240);
+            this.Controls.Add(this.ReportsButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.monthCalendar1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Calendar";
             this.Text = "Calendar";
             this.ResumeLayout(false);
@@ -68,5 +80,6 @@
 
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button ReportsButton;
     }
 }

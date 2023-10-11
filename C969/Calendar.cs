@@ -43,5 +43,11 @@ namespace C969
             WeeklyCalendar wc = new WeeklyCalendar(this.user);
             wc.Show();
         }
+
+        private void ReportsButton_Click(object sender, EventArgs e)
+        {
+            Reports reports = new Reports();
+            reports.Show();
+        }
     }
 }

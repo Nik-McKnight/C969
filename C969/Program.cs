@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Resources;
 using System.Globalization;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace C969
 {
@@ -33,6 +35,8 @@ namespace C969
 
             //string[][][] test = Utilities.ReadUserAppointmentsNextWeek(1, DateTime.Now);
             //Console.WriteLine(test[0].Length);
+
+            Utilities.ConsultantSchedulesReport();
 
             Application.Run(new Login());
         }

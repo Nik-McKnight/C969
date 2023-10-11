@@ -208,7 +208,7 @@ namespace C969
                         string sql = "INSERT INTO appointment (customerId, userId, title, description, " +
                             "location, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy) " +
                             "VALUES ('" + customerId + "','" + userId + "','" + title + "','" + description + "','" + location +
-                            "','" + contact + "','" + type + "','" + url + "', CURDATE(), CURDATE(), CURDATE(),'" 
+                            "','" + contact + "','" + type + "','" + url + "','" + start  + "','" + end + "', CURDATE(),'" 
                             + createdBy + "', CURDATE() ,'" + lastUpdateBy + "');";
                         Console.WriteLine(sql);
                         MySqlCommand cmd = new MySqlCommand(sql, conn);

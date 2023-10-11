@@ -507,32 +507,6 @@ namespace C969
             string[][] day = { };
             try
             {
-                //string sql = "select customerName, title, description, location, " +
-                //    "contact, type, url, start, end from appointment right join " +
-                //    "customer on appointment.customerId = customer.customerId" +
-                //    " where userId = " + userId + " and start like '"+dateTime +"%';";
-                //Console.WriteLine(sql);
-                //MySqlCommand cmd = new MySqlCommand(sql, conn);
-                //MySqlDataReader reader = cmd.ExecuteReader();
-                //if (reader.HasRows)
-                //{
-                //    while (reader.Read())
-                //    {
-                //        string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
-                //                            reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                //                            reader.GetString(8)};
-                //        int length = output.Length;
-                //        Array.Resize(ref output, length + 1);
-                //        output[length] = (day);
-                //    }
-                //    conn.Close();
-                //    return day;
-                //}
-                //else
-                //{
-                //    conn.Close();
-                //    return null;
-                //}
                 output[0] = ReadUserAppointmentsByDate(userId, dateTime.ToString("yyyy-MM-dd"));
                 for (int i = 1; i < 7; i++)
                 {
@@ -546,7 +520,111 @@ namespace C969
             }
         }
 
+        internal static List<string[]> ReadAppointmentTypesByMonth(string month)
+        {
+            List<string[]> output = new List<string[]>();
+            try
+            {
+                conn.Open();
+                string sql = "select type, count(type) from appointment where start like '%-" + month + "-%' group by type order by count(type) desc;";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] type = { reader.GetString(0), reader.GetString(1)};
+                        output.Add(type);
+                    }
+                    conn.Close();
+                    return output;
+                }
+                else
+                {
+                    conn.Close();
+                    return null;
+                }
+            }
+            catch
+            {
+                conn.Close();
+                return null;
+            }
+        }
 
+        internal static List<string[]> ReadUserAppointmentsUpcoming(string user)
+        {
+            List<string[]> output = new List<string[]>();
+            try
+            {
+                conn.Open();
+                string sql = "select userId, customerName, title, description, start, end from appointment " +
+                    "right join customer on appointment.customerId = customer.customerId " +
+                    "where userId = " + user + " and start > curdate() " +
+                    "group by userId, customerName, title, description, start, end " +
+                    "order by userId asc;";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                                            reader.GetString(4), reader.GetString(5)};
+                        output.Add(appointment);
+                    }
+                    conn.Close();
+                    return output;
+                }
+                else
+                {
+                    conn.Close();
+                    return null;
+                }
+            }
+            catch
+            {
+                conn.Close();
+                return null;
+            }
+        }
+
+        internal static List<string> ReadUsersWithUpcomingAppointments()
+        {
+            List<string> output = new List<string>();
+            try
+            {
+                conn.Open();
+                string sql = "select userId from appointment " +
+                    "where start > curdate() " +
+                    "group by userId " +
+                    "order by userId asc;";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        output.Add(reader.GetString(0));
+                    }
+                    conn.Close();
+                    return output;
+                }
+                else
+                {
+                    conn.Close();
+                    return null;
+                }
+            }
+            catch
+            {
+                conn.Close();
+                return null;
+            }
+        }
 
 
         internal static Boolean UpdateAppointment(int appointmentId, int customerId, int userId, string title, string description, string location,
@@ -643,5 +721,82 @@ namespace C969
                 writer.WriteLine(log);
             }
         }
+
+        internal static Boolean AppointmentTypesReport()
+        {
+            // Lambda Func: I needed to call a function many times that would only be used inside this report function.
+            Func<List<string[]>, StreamWriter, String, Boolean> MonthReport = (x, y, z) =>
+            {
+                y.WriteLine(z);
+                y.WriteLine("---------------------------------------------------------------------------------------------------");
+                if (x != null) {
+                    foreach (string[] appointment in x)
+                    {
+                        y.WriteLine($"Type: {appointment[0]}, Number: {appointment[1]}");
+                    }
+                }
+                else
+                {
+                    y.WriteLine("No appointments this month");
+                }
+                y.WriteLine("===================================================================================================");
+                y.WriteLine();
+                return true;
+            };
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("../../AppointmentTypesReport.txt"))
+                {
+                    MonthReport(ReadAppointmentTypesByMonth("01"), writer, "January");
+                    MonthReport(ReadAppointmentTypesByMonth("02"), writer, "February");
+                    MonthReport(ReadAppointmentTypesByMonth("03"), writer, "March");
+                    MonthReport(ReadAppointmentTypesByMonth("04"), writer, "April");
+                    MonthReport(ReadAppointmentTypesByMonth("05"), writer, "May");
+                    MonthReport(ReadAppointmentTypesByMonth("06"), writer, "June");
+                    MonthReport(ReadAppointmentTypesByMonth("07"), writer, "July");
+                    MonthReport(ReadAppointmentTypesByMonth("08"), writer, "August");
+                    MonthReport(ReadAppointmentTypesByMonth("09"), writer, "September");
+                    MonthReport(ReadAppointmentTypesByMonth("10"), writer, "October");
+                    MonthReport(ReadAppointmentTypesByMonth("11"), writer, "November");
+                    MonthReport(ReadAppointmentTypesByMonth("12"), writer, "December");
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        internal static Boolean ConsultantSchedulesReport()
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("../../ConsultantAppointmentsReport.txt"))
+                {
+                    List<string> users = ReadUsersWithUpcomingAppointments();
+                    foreach (string user in users)
+                    {
+                        writer.WriteLine("User ID: " + user);
+                        writer.WriteLine("---------------------------------------------------------------------------------------------------");
+                        List<string[]> appointments = ReadUserAppointmentsUpcoming(user);
+                        foreach (string[] appointment in appointments)
+                        {
+                            writer.WriteLine($"Start Time: {appointment[4]}, End Time: {appointment[5]}, Customer: {appointment[1]}, Title: {appointment[2]}, Description: {appointment[3]}");
+                        writer.WriteLine("----------");
+                        }
+                        writer.WriteLine("===================================================================================================");
+                        writer.WriteLine();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
     }
 }

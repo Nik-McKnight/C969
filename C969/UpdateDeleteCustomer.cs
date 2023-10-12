@@ -14,7 +14,7 @@ namespace C969
     {
         User user;
         string[] customer;
-        int customerId;
+        string customerId;
         public UpdateDeleteCustomer(User user)
         {
             this.user = user;
@@ -84,6 +84,18 @@ namespace C969
 
         private void CityBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (CityBox.Text != "")
+                {
+                    Int32.Parse(CityBox.Text);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("City ID must be an integer");
+                CityBox.Text="";
+            }
             EnableButtons();
         }
 
@@ -102,7 +114,7 @@ namespace C969
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             try {
-                Utilities.DeleteCustomer(this.customerId);
+                Utilities.DeleteCustomer(Int32.Parse(this.customerId));
                 MessageBox.Show("Customer has been deleted!");
                 CustIDBox.Text = "";
                 this.customer = null;
@@ -124,7 +136,7 @@ namespace C969
         {
             try {
                 if (Utilities.UpdateCustomer(NameBox.Text, Ad1Box.Text, Ad2Box.Text, this.user.userName, PhoneBox.Text,
-                Int32.Parse(CityBox.Text), this.user.userName, PCBox.Text, this.customerId, 1))
+                Int32.Parse(CityBox.Text), this.user.userName, PCBox.Text, Int32.Parse(this.customerId), 1))
                 {
                     MessageBox.Show("Customer has been updated!");
                     string temp = CustIDBox.Text;
@@ -146,8 +158,8 @@ namespace C969
         {
             try
             {
-                this.customerId = Int32.Parse(CustIDBox.Text);
-                this.customer = Utilities.ReadCustomer(this.customerId);
+                this.customerId = CustIDBox.Text;
+                this.customer = Utilities.ReadCustomer(Int32.Parse(this.customerId));
                 NameBox.Text = this.customer[1];
                 Ad1Box.Text = this.customer[9];
                 Ad2Box.Text = this.customer[10];
@@ -157,7 +169,9 @@ namespace C969
             }
             catch
             {
+                MessageBox.Show($"Customer with ID {this.customerId} does not exist");
                 this.customer = null;
+                this.customerId = null;
                 NameBox.Text = "";
                 Ad1Box.Text = "";
                 Ad2Box.Text = "";

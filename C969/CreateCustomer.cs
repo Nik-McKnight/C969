@@ -58,6 +58,18 @@ namespace C969
 
         private void CityBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (CityBox.Text != "")
+                {
+                    Int32.Parse(CityBox.Text);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("City ID must be an integer");
+                CityBox.Text="";
+            }
             EnableButtons();
         }
 

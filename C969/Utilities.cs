@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace C969
 {
@@ -155,6 +156,40 @@ namespace C969
                                             reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11),
                                             reader.GetString(12), reader.GetString(13), reader.GetString(14), reader.GetString(15),
                                             reader.GetString(16), reader.GetString(17) };
+                        conn.Close();
+                        return output;
+                    }
+                    conn.Close();
+                    return null;
+                }
+                else
+                {
+                    conn.Close();
+                    return null;
+                }
+            }
+            catch
+            {
+                conn.Close();
+                return null;
+            }
+        }
+
+        internal static string[] ReadUser (int userId)
+        {
+            try
+            {
+                conn.Open();
+                string sql = $"select * from user where userId = {userId};";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] output = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                                            reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)};
                         conn.Close();
                         return output;
                     }
@@ -484,13 +519,16 @@ namespace C969
             }
         }
 
-        internal static ArrayList ReadAllAppointmentsByCustomer(int customerId)
+        internal static string[][] ReadAllAppointmentsByCustomer(int customerId)
         {
-            ArrayList output = new ArrayList();
+            string[][] output = { };
             try
             {
                 conn.Open();
-                string sql = "select * from appointment where customerId = " + customerId + ";";
+                string sql = "select customerName, title, description, location, " +
+                    "contact, type, url, start, end from appointment right join " +
+                    "customer on appointment.customerId = customer.customerId" +
+                    " where customerId = '" + customerId + "';";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -500,9 +538,10 @@ namespace C969
                     {
                         string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                             reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7),
-                                            reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11),
-                                            reader.GetString(12), reader.GetString(13), reader.GetString(14)};
-                        output.Add(appointment);
+                                            reader.GetString(8)};
+                        int length = output.Length;
+                        Array.Resize(ref output, length + 1);
+                        output[length] = (appointment);
                     }
                     conn.Close();
                     return output;
@@ -540,6 +579,41 @@ namespace C969
                         string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                                             reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7),
                                             reader.GetString(8)};
+                        int length = output.Length;
+                        Array.Resize(ref output, length + 1);
+                        output[length] = (appointment);
+                    }
+                    conn.Close();
+                    return output;
+                }
+                else
+                {
+                    conn.Close();
+                    return null;
+                }
+            }
+            catch
+            {
+                conn.Close();
+                return null;
+            }
+        }
+
+        internal static string[][] ReadAllAppointmentsByUserAndCustomer(int userId, int customerId)
+        {
+            string[][] output = { };
+            try
+            {
+                conn.Open();
+                string sql = $"select start, end, appointmentId from appointment where userId = {userId} or customerId={customerId};";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2)};
                         int length = output.Length;
                         Array.Resize(ref output, length + 1);
                         output[length] = (appointment);
@@ -1019,6 +1093,48 @@ namespace C969
 
             return true;
         }
-    }
 
+        internal static Boolean DoesOverlap(int userId, int customerId, DateTime start, DateTime end, int appointmentId = 0)
+        {
+            string[][] appointments = ReadAllAppointmentsByUserAndCustomer(userId, customerId);
+
+            foreach (string[] appointment in appointments)
+            {
+                if ((start >= DateTime.Parse(appointment[0]) && start < DateTime.Parse(appointment[1]) ||
+                    (end > DateTime.Parse(appointment[0]) && end <= DateTime.Parse(appointment[1])) ||
+                    (start <= DateTime.Parse(appointment[0]) && end >= DateTime.Parse(appointment[1])) ||
+                    (start > end)) && (appointmentId != Int32.Parse(appointment[2]))){
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        internal static void CheckCustomerAndUserExist(int customerId, int userId)
+        {
+            if (ReadCustomer(customerId) == null)
+            {
+                throw new DoesNotExistException("Customer", customerId);
+            }
+            if (ReadUser(userId) == null)
+            {
+                throw new DoesNotExistException("User", userId);
+            }
+        }
+    }
+    internal class OverlapException : Exception
+    {
+        internal OverlapException()
+        {
+            MessageBox.Show("Appointment overlaps with an existing appointment.");
+        }
+    }
+    internal class DoesNotExistException : Exception
+    {
+        internal DoesNotExistException(string s, int i)
+        {
+            MessageBox.Show($"{s} with ID {i} does not exist.");
+        }
+    }
 }

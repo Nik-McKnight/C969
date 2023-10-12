@@ -44,8 +44,37 @@ namespace C969
             EnableButtons();
         }
 
+        private void CustIdBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (CustIdBox.Text != "")
+                {
+                    Int32.Parse(CustIdBox.Text);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Customer ID must be an integer");
+                CustIdBox.Text="";
+            }
+            EnableButtons();
+        }
+
         private void UserIDBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (UserIDBox.Text != "")
+                {
+                    Int32.Parse(UserIDBox.Text);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("User ID must be an integer");
+                UserIDBox.Text="";
+            }
             EnableButtons();
         }
 
@@ -79,21 +108,24 @@ namespace C969
             EnableButtons();
         }
 
-        private void CustIdBox_TextChanged(object sender, EventArgs e)
-        {
-            EnableButtons();
-        }
-
         private void SubmitButton_Click(object sender, EventArgs e)
         {
             try
             {
+                Utilities.CheckCustomerAndUserExist(Int32.Parse(CustIdBox.Text), Int32.Parse(UserIDBox.Text));
+
                 if (!Utilities.CheckHours(StartBox.Text, EndBox.Text))
                 {
                     throw new BusinessHoursException();
                 }
+
+                if (Utilities.DoesOverlap(Int32.Parse(UserIDBox.Text), Int32.Parse(CustIdBox.Text), Utilities.ConvertToUtc(DateTime.Parse(StartBox.Text)), Utilities.ConvertToUtc(DateTime.Parse(EndBox.Text))))
+                {
+                    throw new OverlapException();
+                }
                 string start = Utilities.ConvertToUtc(DateTime.Parse(StartBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
                 string end = Utilities.ConvertToUtc(DateTime.Parse(EndBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
+
                 if (Utilities.CreateAppointment(Int32.Parse(CustIdBox.Text), Int32.Parse(UserIDBox.Text), TitleBox.Text, DescBox.Text,
                 LocationBox.Text, EmailBox.Text, TypeBox.Text, URLBox.Text, start, end, this.user.userName))
                 {

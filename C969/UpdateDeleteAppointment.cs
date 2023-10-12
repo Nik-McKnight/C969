@@ -79,11 +79,35 @@ namespace C969
 
         private void CustIdBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (CustIdBox.Text != "")
+                {
+                    Int32.Parse(CustIdBox.Text);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Customer ID must be an integer");
+                CustIdBox.Text="";
+            }
             EnableButtons();
         }
 
         private void UserIDBox_TextChanged(object sender, EventArgs e)
         {
+            try
+            {
+                if (UserIDBox.Text != "")
+                {
+                    Int32.Parse(UserIDBox.Text);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("User ID must be an integer");
+                UserIDBox.Text="";
+            }
             EnableButtons();
         }
 
@@ -157,10 +181,18 @@ namespace C969
         {
             try
             {
+                Utilities.CheckCustomerAndUserExist(Int32.Parse(CustIdBox.Text), Int32.Parse(UserIDBox.Text));
+
                 if (!Utilities.CheckHours(StartBox.Text, EndBox.Text))
                 {
                     throw new BusinessHoursException();
                 }
+
+                if (Utilities.DoesOverlap(Int32.Parse(UserIDBox.Text), Int32.Parse(CustIdBox.Text), Utilities.ConvertToUtc(DateTime.Parse(StartBox.Text)), Utilities.ConvertToUtc(DateTime.Parse(EndBox.Text)), this.appointmentId))
+                {
+                    throw new OverlapException();
+                }
+
                 string start = Utilities.ConvertToUtc(DateTime.Parse(StartBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
                 string end = Utilities.ConvertToUtc(DateTime.Parse(EndBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
                 if (Utilities.UpdateAppointment(this.appointmentId, Int32.Parse(CustIdBox.Text), Int32.Parse(UserIDBox.Text), TitleBox.Text, DescBox.Text,

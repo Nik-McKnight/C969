@@ -36,7 +36,7 @@ namespace C969
             //string[][][] test = Utilities.ReadUserAppointmentsNextWeek(1, DateTime.Now);
             //Console.WriteLine(test[0].Length);
 
-            Utilities.ConsultantSchedulesReport();
+            Utilities.CustomerAppointmentsReport();
 
             Application.Run(new Login());
         }

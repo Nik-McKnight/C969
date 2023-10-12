@@ -33,5 +33,17 @@ namespace C969
                 MessageBox.Show("Report Not Generated!");
             }
         }
+
+        private void CustomerButton_Click(object sender, System.EventArgs e)
+        {
+            if (Utilities.CustomerAppointmentsReport())
+            {
+                MessageBox.Show("Report Generated!");
+            }
+            else
+            {
+                MessageBox.Show("Report Not Generated!");
+            }
+        }
     }
 }

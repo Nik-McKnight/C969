@@ -59,8 +59,9 @@
             this.CustomerButton.Name = "CustomerButton";
             this.CustomerButton.Size = new System.Drawing.Size(294, 23);
             this.CustomerButton.TabIndex = 2;
-            this.CustomerButton.Text = "Generate Unique Patient Visits Report";
+            this.CustomerButton.Text = "Generate Patient Visits Report";
             this.CustomerButton.UseVisualStyleBackColor = true;
+            this.CustomerButton.Click += new System.EventHandler(this.CustomerButton_Click);
             // 
             // Reports
             // 

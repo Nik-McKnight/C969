@@ -626,6 +626,74 @@ namespace C969
             }
         }
 
+        internal static List<string[]> ReadAppointmentsByCustomerName(string customerName)
+        {
+            List<string[]> output = new List<string[]>();
+            try
+            {
+                conn.Open();
+                string sql = "select customerName, title, description, location, contact, type, url, start, end " +
+                    "from appointment right join customer on appointment.customerId = customer.customerId " +
+                    "where customerName = '" + customerName +"' order by start asc;";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        string[] appointment = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                                            reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7), reader.GetString(8)};
+                        output.Add(appointment);
+                    }
+                    conn.Close();
+                    return output;
+                }
+                else
+                {
+                    conn.Close();
+                    return null;
+                }
+            }
+            catch
+            {
+                conn.Close();
+                return null;
+            }
+        }
+
+        internal static List<string> ReadCustomersWithAppointments()
+        {
+            List<string> output = new List<string>();
+            try
+            {
+                conn.Open();
+                string sql = "select customerName from appointment right join customer " +
+                    "on appointment.customerId = customer.customerId group by customerName order by customerName asc;";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        output.Add(reader.GetString(0));
+                    }
+                    conn.Close();
+                    return output;
+                }
+                else
+                {
+                    conn.Close();
+                    return null;
+                }
+            }
+            catch
+            {
+                conn.Close();
+                return null;
+            }
+        }
 
         internal static Boolean UpdateAppointment(int appointmentId, int customerId, int userId, string title, string description, string location,
                                                   string contact, string type, string url, string start, string end,
@@ -785,6 +853,42 @@ namespace C969
                         {
                             writer.WriteLine($"Start Time: {appointment[4]}, End Time: {appointment[5]}, Customer: {appointment[1]}, Title: {appointment[2]}, Description: {appointment[3]}");
                         writer.WriteLine("----------");
+                        }
+                        writer.WriteLine("===================================================================================================");
+                        writer.WriteLine();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        internal static Boolean CustomerAppointmentsReport()
+        {
+            try
+            {
+                using (StreamWriter writer = new StreamWriter("../../CustomerAppointmentsReport.txt"))
+                {
+                    List<string> customers = ReadCustomersWithAppointments();
+                    foreach (string customer in customers)
+                    {
+                        writer.WriteLine(customer);
+                        writer.WriteLine("---------------------------------------------------------------------------------------------------");
+                        List<string[]> appointments = ReadAppointmentsByCustomerName(customer);
+                        foreach (string[] appointment in appointments)
+                        {
+                            try
+                            {
+                                writer.WriteLine($"Start Time: {appointment[4]}, End Time: {appointment[5]}, Customer: {appointment[1]}, Title: {appointment[2]}, Description: {appointment[3]}");
+                                writer.WriteLine("----------");
+                            }
+                            catch
+                            {
+
+                            }
                         }
                         writer.WriteLine("===================================================================================================");
                         writer.WriteLine();

@@ -88,8 +88,8 @@ namespace C969
         {
             try
             {
-                string start = DateTime.Parse(StartBox.Text).ToString("yyyy-MM-dd HH:mm:ss");
-                string end = DateTime.Parse(StartBox.Text).ToString("yyyy-MM-dd HH:mm:ss");
+                string start = Utilities.ConvertToUtc(DateTime.Parse(StartBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
+                string end = Utilities.ConvertToUtc(DateTime.Parse(EndBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
                 if (Utilities.CreateAppointment(Int32.Parse(CustIdBox.Text), Int32.Parse(UserIDBox.Text), TitleBox.Text, DescBox.Text,
                 LocationBox.Text, EmailBox.Text, TypeBox.Text, URLBox.Text, start, end, this.user.userName))
                 {

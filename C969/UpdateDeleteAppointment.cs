@@ -157,8 +157,8 @@ namespace C969
         {
             try
             {
-                string start = DateTime.Parse(StartBox.Text).ToString("yyyy-MM-dd HH:mm:ss");
-                string end = DateTime.Parse(StartBox.Text).ToString("yyyy-MM-dd HH:mm:ss");
+                string start = Utilities.ConvertToUtc(DateTime.Parse(StartBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
+                string end = Utilities.ConvertToUtc(DateTime.Parse(EndBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
                 if (Utilities.UpdateAppointment(this.appointmentId, Int32.Parse(CustIdBox.Text), Int32.Parse(UserIDBox.Text), TitleBox.Text, DescBox.Text,
                 LocationBox.Text, EmailBox.Text, TypeBox.Text, URLBox.Text, start, end, this.user.userName))
                 {
@@ -192,8 +192,8 @@ namespace C969
                 EmailBox.Text = appointment[6];
                 TypeBox.Text = appointment[7];
                 URLBox.Text = appointment[8];
-                StartBox.Text = appointment[9];
-                EndBox.Text = appointment[10];
+                StartBox.Text = Utilities.ConvertToLocalTime(appointment[9]).ToString();
+                EndBox.Text = Utilities.ConvertToLocalTime(appointment[10]).ToString();
             }
             catch
             {

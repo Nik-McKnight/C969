@@ -855,8 +855,14 @@ namespace C969
             DateTime dt = DateTime.Parse(date);
             TimeZone curTimeZone = TimeZone.CurrentTimeZone;
             TimeSpan currentOffset = curTimeZone.GetUtcOffset(DateTime.Now);
-            //DateTime local = addDST(dt.Add(currentOffset));
             return dt.Add(currentOffset);
+        }
+
+        internal static DateTime ConvertToUtc(DateTime local)
+        {
+            TimeZone curTimeZone = TimeZone.CurrentTimeZone;
+            TimeSpan currentOffset = curTimeZone.GetUtcOffset(DateTime.Now);
+            return local.Subtract(currentOffset);
         }
 
         internal static Boolean checkForUpcomingAppointment(User user)

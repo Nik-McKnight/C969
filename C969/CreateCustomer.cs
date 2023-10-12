@@ -66,12 +66,12 @@ namespace C969
             if (Utilities.CreateCustomer(NameBox.Text, Ad1Box.Text, Ad2Box.Text, this.user.userName, PhoneBox.Text, 
                 Int32.Parse(CityBox.Text), this.user.userName, PCBox.Text))
             {
-                MessageBox.Show("User created!");
+                MessageBox.Show("Customer created!");
             }
 
             else
             {
-                MessageBox.Show("User not created.");
+                MessageBox.Show("Customer not created.");
             }
         }
     }

@@ -795,8 +795,7 @@ namespace C969
         }
 
         internal static Boolean UpdateAppointment(int appointmentId, int customerId, int userId, string title, string description, string location,
-                                                  string contact, string type, string url, string start, string end,
-                                                  string createDate, string createdBy, string lastUpdateBy)
+                                                  string contact, string type, string url, string start, string end, string lastUpdateBy)
         {
             try
             {
@@ -804,8 +803,7 @@ namespace C969
                 string sql = "update appointment " +
                     "set customerId = " + customerId + ", userId = " + userId + ", title = '" + title + "', description = '" + description +
                     "', location = '" + location + "', contact = '" + contact +"', type = '" + type + "', url = '" + url +
-                    "', start = '" + start + "', end = '" + end + "', createDate = '" + createDate +
-                    "', createdBy = '" + createdBy + "', lastUpdate = CURDATE(), lastUpdateBy ='" + lastUpdateBy +
+                    "', start = '" + start + "', end = '" + end + "', lastUpdate = CURDATE(), lastUpdateBy ='" + lastUpdateBy +
                     "' where appointmentId = " + appointmentId + ";";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);

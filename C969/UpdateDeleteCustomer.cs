@@ -14,6 +14,7 @@ namespace C969
     {
         User user;
         string[] customer;
+        int customerId;
         public UpdateDeleteCustomer(User user)
         {
             this.user = user;
@@ -88,9 +89,65 @@ namespace C969
 
         private void CustIDBox_TextChanged(object sender, EventArgs e)
         {
+            if (CustIDBox.Text != "")
+            {
+                LookupButton.Enabled = true;
+            }
+            else
+            {
+                LookupButton.Enabled = false;
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            try {
+                Utilities.DeleteCustomer(this.customerId);
+                MessageBox.Show("Customer has been deleted!");
+                CustIDBox.Text = "";
+                this.customer = null;
+                NameBox.Text = "";
+                Ad1Box.Text = "";
+                Ad2Box.Text = "";
+                PhoneBox.Text = "";
+                PCBox.Text = "";
+                CityBox.Text = "";
+                EnableFields();
+            }
+            catch
+            {
+                MessageBox.Show("Customer has not been deleted.");
+            }
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            try {
+                if (Utilities.UpdateCustomer(NameBox.Text, Ad1Box.Text, Ad2Box.Text, this.user.userName, PhoneBox.Text,
+                Int32.Parse(CityBox.Text), this.user.userName, PCBox.Text, this.customerId, 1))
+                {
+                    MessageBox.Show("Customer has been updated!");
+                    string temp = CustIDBox.Text;
+                    CustIDBox.Text = "";
+                    CustIDBox.Text = temp;
+                }
+                else
+                {
+                    MessageBox.Show("Customer has not been updated.");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Customer has not been updated.");
+            }
+        }
+
+        private void LookupButton_Click(object sender, EventArgs e)
+        {
             try
             {
-                this.customer = Utilities.ReadCustomer(Int32.Parse(CustIDBox.Text));
+                this.customerId = Int32.Parse(CustIDBox.Text);
+                this.customer = Utilities.ReadCustomer(this.customerId);
                 NameBox.Text = this.customer[1];
                 Ad1Box.Text = this.customer[9];
                 Ad2Box.Text = this.customer[10];
@@ -109,35 +166,6 @@ namespace C969
                 CityBox.Text = "";
             }
             EnableFields();
-        }
-
-        private void DeleteButton_Click(object sender, EventArgs e)
-        {
-            try {
-                Utilities.DeleteCustomer(Int32.Parse(CustIDBox.Text));
-                MessageBox.Show("Customer has been deleted!");
-                CustIDBox.Text = "";
-            }
-            catch
-            {
-                MessageBox.Show("Customer has not been deleted.");
-            }
-        }
-
-        private void UpdateButton_Click(object sender, EventArgs e)
-        {
-            try {
-                Utilities.UpdateCustomer(NameBox.Text, Ad1Box.Text, Ad2Box.Text, this.user.userName, PhoneBox.Text,
-                Int32.Parse(CityBox.Text), this.user.userName, PCBox.Text, Int32.Parse(CustIDBox.Text), 1);
-                MessageBox.Show("Customer has been updated!");
-                string temp = CustIDBox.Text;
-                CustIDBox.Text = "";
-                CustIDBox.Text = temp;
-            }
-            catch
-            {
-                MessageBox.Show("Customer has not been updated.");
-            }
         }
     }
 }

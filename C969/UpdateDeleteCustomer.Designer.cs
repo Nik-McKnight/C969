@@ -44,6 +44,7 @@
             this.CustIDBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.UpdateButton = new System.Windows.Forms.Button();
+            this.LookupButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DeleteButton
@@ -209,11 +210,24 @@
             this.UpdateButton.UseVisualStyleBackColor = true;
             this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
+            // LookupButton
+            // 
+            this.LookupButton.Enabled = false;
+            this.LookupButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.LookupButton.Location = new System.Drawing.Point(493, 49);
+            this.LookupButton.Name = "LookupButton";
+            this.LookupButton.Size = new System.Drawing.Size(157, 23);
+            this.LookupButton.TabIndex = 58;
+            this.LookupButton.Text = "Look-Up User";
+            this.LookupButton.UseVisualStyleBackColor = true;
+            this.LookupButton.Click += new System.EventHandler(this.LookupButton_Click);
+            // 
             // UpdateDeleteCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LookupButton);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.CustIDBox);
             this.Controls.Add(this.label7);
@@ -256,5 +270,6 @@
         private System.Windows.Forms.TextBox CustIDBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button UpdateButton;
+        private System.Windows.Forms.Button LookupButton;
     }
 }

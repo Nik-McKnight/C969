@@ -64,12 +64,14 @@ namespace C969
 
         private void createAppButton_Click(object sender, EventArgs e)
         {
-
+            CreateAppointment ca = new CreateAppointment(user);
+            ca.Show();
         }
 
         private void UDAppButton_Click(object sender, EventArgs e)
         {
-
+            UpdateDeleteAppointment uda = new UpdateDeleteAppointment(user);
+            uda.Show();
         }
     }
 }

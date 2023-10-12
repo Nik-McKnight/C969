@@ -50,3 +50,5 @@ C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.Reports.r
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.strings_de.resources
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.CreateCustomer.resources
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.UpdateDeleteCustomer.resources
+C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.UpdateDeleteAppointment.resources
+C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.CreateAppointment.resources

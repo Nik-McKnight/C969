@@ -32,6 +32,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.ReportsButton = new System.Windows.Forms.Button();
             this.CreateUserButton = new System.Windows.Forms.Button();
+            this.UDCustButton = new System.Windows.Forms.Button();
+            this.createAppButton = new System.Windows.Forms.Button();
+            this.UDAppButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -72,11 +75,44 @@
             this.CreateUserButton.UseVisualStyleBackColor = true;
             this.CreateUserButton.Click += new System.EventHandler(this.CreateUserButton_Click);
             // 
+            // UDCustButton
+            // 
+            this.UDCustButton.Location = new System.Drawing.Point(291, 72);
+            this.UDCustButton.Name = "UDCustButton";
+            this.UDCustButton.Size = new System.Drawing.Size(233, 23);
+            this.UDCustButton.TabIndex = 4;
+            this.UDCustButton.Text = "Update/Delete Customer";
+            this.UDCustButton.UseVisualStyleBackColor = true;
+            this.UDCustButton.Click += new System.EventHandler(this.UDCustButton_Click);
+            // 
+            // createAppButton
+            // 
+            this.createAppButton.Location = new System.Drawing.Point(291, 101);
+            this.createAppButton.Name = "createAppButton";
+            this.createAppButton.Size = new System.Drawing.Size(233, 23);
+            this.createAppButton.TabIndex = 5;
+            this.createAppButton.Text = "Create Appointment";
+            this.createAppButton.UseVisualStyleBackColor = true;
+            this.createAppButton.Click += new System.EventHandler(this.createAppButton_Click);
+            // 
+            // UDAppButton
+            // 
+            this.UDAppButton.Location = new System.Drawing.Point(291, 130);
+            this.UDAppButton.Name = "UDAppButton";
+            this.UDAppButton.Size = new System.Drawing.Size(233, 23);
+            this.UDAppButton.TabIndex = 6;
+            this.UDAppButton.Text = "Update/Delete Appointment";
+            this.UDAppButton.UseVisualStyleBackColor = true;
+            this.UDAppButton.Click += new System.EventHandler(this.UDAppButton_Click);
+            // 
             // Calendar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 240);
+            this.Controls.Add(this.UDAppButton);
+            this.Controls.Add(this.createAppButton);
+            this.Controls.Add(this.UDCustButton);
             this.Controls.Add(this.CreateUserButton);
             this.Controls.Add(this.ReportsButton);
             this.Controls.Add(this.button1);
@@ -94,5 +130,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ReportsButton;
         private System.Windows.Forms.Button CreateUserButton;
+        private System.Windows.Forms.Button UDCustButton;
+        private System.Windows.Forms.Button createAppButton;
+        private System.Windows.Forms.Button UDAppButton;
     }
 }

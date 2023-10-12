@@ -49,3 +49,4 @@ C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.WeeklyCal
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.Reports.resources
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.strings_de.resources
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.CreateCustomer.resources
+C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.UpdateDeleteCustomer.resources

@@ -55,5 +55,21 @@ namespace C969
             CreateCustomer createCustomer = new CreateCustomer(this.user);
             createCustomer.Show(); 
         }
+
+        private void UDCustButton_Click(object sender, EventArgs e)
+        {
+            UpdateDeleteCustomer udc = new UpdateDeleteCustomer(user);
+            udc.Show();
+        }
+
+        private void createAppButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UDAppButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

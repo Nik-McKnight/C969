@@ -165,7 +165,7 @@
             this.SubmitButton.Name = "SubmitButton";
             this.SubmitButton.Size = new System.Drawing.Size(157, 23);
             this.SubmitButton.TabIndex = 14;
-            this.SubmitButton.Text = "Create User";
+            this.SubmitButton.Text = "Create Customer";
             this.SubmitButton.UseVisualStyleBackColor = true;
             this.SubmitButton.Click += new System.EventHandler(this.SubmitButton_Click);
             // 

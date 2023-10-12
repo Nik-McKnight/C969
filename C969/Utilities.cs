@@ -215,7 +215,7 @@ namespace C969
                 int addressId = ReadAddressIdByAddress(address);
                 if (addressId == 0)
                 {
-                    CreateAddress(address, address2, phone, cityId, userName, postalCode);
+                    CreateAddress(address, address2, phone, cityId, postalCode, userName);
                     addressId = ReadAddressIdByAddress(address);
                 }
                 if (addressId != 0)

@@ -17,9 +17,10 @@ namespace C969
         [STAThread]
         static void Main()
         {
-            // Uncomment and change this to test different cultures
-            //System.Threading.Thread.CurrentThread.CurrentCulture =
-            //System.Globalization.CultureInfo.GetCultureInfo("es-MX");
+            // Uncomment one of these to force different cultures
+            //System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("en-us");
+            //System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("es-MX");
+            //System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("de");
 
             // Enable this to seed database
             //Utilities.SeedData();
@@ -32,11 +33,6 @@ namespace C969
 
             // Enable this to add an appointments over the next week for userId 1. Used to test weekly calendar.
             //Utilities.addAppointmentsOverNextWeek();
-
-            //string[][][] test = Utilities.ReadUserAppointmentsNextWeek(1, DateTime.Now);
-            //Console.WriteLine(test[0].Length);
-
-            Utilities.CustomerAppointmentsReport();
 
             Application.Run(new Login());
         }

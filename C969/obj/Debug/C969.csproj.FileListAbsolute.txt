@@ -47,3 +47,5 @@ C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.Calendar.
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.Appointments.resources
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.WeeklyCalendar.resources
 C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.Reports.resources
+C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.strings_de.resources
+C:\Users\troja\OneDrive\Documents\School\C969\C969\C969\obj\Debug\C969.CreateCustomer.resources

@@ -110,11 +110,22 @@
     <Compile Include="Calendar.Designer.cs">
       <DependentUpon>Calendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCustomer.Designer.cs">
+      <DependentUpon>CreateCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="strings_de.Designer.cs">
+      <DependentUpon>strings_de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="strings_es-MX.Designer.cs">
       <DependentUpon>strings_es-MX.resx</DependentUpon>
@@ -149,6 +160,9 @@
     <EmbeddedResource Include="Calendar.resx">
       <DependentUpon>Calendar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreateCustomer.resx">
+      <DependentUpon>CreateCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +178,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="strings_de.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings_de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="strings_es-MX.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings_es-MX.Designer.cs</LastGenOutput>

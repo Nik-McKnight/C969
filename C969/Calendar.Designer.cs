@@ -31,6 +31,7 @@
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.button1 = new System.Windows.Forms.Button();
             this.ReportsButton = new System.Windows.Forms.Button();
+            this.CreateUserButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // monthCalendar1
@@ -61,11 +62,22 @@
             this.ReportsButton.UseVisualStyleBackColor = true;
             this.ReportsButton.Click += new System.EventHandler(this.ReportsButton_Click);
             // 
+            // CreateUserButton
+            // 
+            this.CreateUserButton.Location = new System.Drawing.Point(291, 43);
+            this.CreateUserButton.Name = "CreateUserButton";
+            this.CreateUserButton.Size = new System.Drawing.Size(233, 23);
+            this.CreateUserButton.TabIndex = 3;
+            this.CreateUserButton.Text = "Create Customer";
+            this.CreateUserButton.UseVisualStyleBackColor = true;
+            this.CreateUserButton.Click += new System.EventHandler(this.CreateUserButton_Click);
+            // 
             // Calendar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 240);
+            this.Controls.Add(this.CreateUserButton);
             this.Controls.Add(this.ReportsButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.monthCalendar1);
@@ -81,5 +93,6 @@
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button ReportsButton;
+        private System.Windows.Forms.Button CreateUserButton;
     }
 }

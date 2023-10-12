@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="UserLabelSec.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 61</value>
+    <value>200, 59</value>
   </data>
   <data name="UserLabelSec.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -147,10 +147,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UserLabelSec.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="UserBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 77</value>
+    <value>192, 75</value>
   </data>
   <data name="UserBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -168,13 +168,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;UserBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="SubmitButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="SubmitButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 213</value>
+    <value>128, 211</value>
   </data>
   <data name="SubmitButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 23</value>
@@ -195,10 +195,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SubmitButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="PassBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>211, 164</value>
+    <value>192, 162</value>
   </data>
   <data name="PassBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
@@ -216,13 +216,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PassBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="PassLabelSec.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="PassLabelSec.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 148</value>
+    <value>200, 146</value>
   </data>
   <data name="PassLabelSec.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 13</value>
@@ -246,28 +246,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;PassLabelSec.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 23</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="PassLabelPri.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -277,7 +256,7 @@
     <value>NoControl</value>
   </data>
   <data name="PassLabelPri.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 125</value>
+    <value>200, 123</value>
   </data>
   <data name="PassLabelPri.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 13</value>
@@ -310,7 +289,7 @@
     <value>NoControl</value>
   </data>
   <data name="UserLabelPri.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 38</value>
+    <value>200, 36</value>
   </data>
   <data name="UserLabelPri.Size" type="System.Drawing.Size, System.Drawing">
     <value>83, 13</value>
@@ -343,7 +322,7 @@
     <value>NoControl</value>
   </data>
   <data name="RegisterButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 242</value>
+    <value>128, 240</value>
   </data>
   <data name="RegisterButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>224, 23</value>
@@ -379,7 +358,7 @@
     <value>Login</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>login</value>
+    <value>Login</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

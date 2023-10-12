@@ -49,5 +49,11 @@ namespace C969
             Reports reports = new Reports();
             reports.Show();
         }
+
+        private void CreateUserButton_Click(object sender, EventArgs e)
+        {
+            CreateCustomer createCustomer = new CreateCustomer(this.user);
+            createCustomer.Show(); 
+        }
     }
 }

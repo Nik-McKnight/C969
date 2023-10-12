@@ -106,17 +106,28 @@ namespace C969
             }
         }
 
-        internal static Boolean CreateCustomer(string customerName, int addressId, string createdBy)
+
+        internal static Boolean CreateCustomer(string customerName, string address, string address2, string createdBy, string phone, int cityId, string userName, string postalCode)
         {
             try
             {
+                int addressId = ReadAddressIdByAddress(address);
+                if (addressId == 0)
+                {
+                    CreateAddress(address, address2, phone, cityId, userName, postalCode);
+                    addressId = ReadAddressIdByAddress(address);
+                }
                 conn.Open();
                 string sql = "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
-                    "VALUES ('" + customerName + "','" + addressId + "',1, CURDATE(),'" + createdBy + "', CURDATE() ,'" + createdBy + "');";
+                    "VALUES ('" + customerName + "'," + addressId + ",1, CURDATE(),'" + createdBy + "', CURDATE() ,'" + createdBy + "');";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
+                if (addressId != 0)
+                {
+                    UpdateAddress(address, address2, cityId, postalCode, phone, userName, addressId);
+                }
                 return true;
             }
             catch
@@ -131,7 +142,7 @@ namespace C969
             try
             {
                 conn.Open();
-                string sql = "select * from customer where customerId = " + customerId + ";";
+                string sql = $"select * from customer inner join address on customer.addressId = address.addressId where customerId = {customerId};";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -140,7 +151,10 @@ namespace C969
                     while (reader.Read())
                     {
                         string[] output = { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
-                                            reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7)};
+                                            reader.GetString(4), reader.GetString(5), reader.GetString(6), reader.GetString(7),
+                                            reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11),
+                                            reader.GetString(12), reader.GetString(13), reader.GetString(14), reader.GetString(15),
+                                            reader.GetString(16), reader.GetString(17) };
                         conn.Close();
                         return output;
                     }
@@ -194,19 +208,29 @@ namespace C969
             }
         }
 
-        internal static Boolean UpdateCustomer(int customerId, string customerName, int addressId, int active, string createDate, string createdBy, string lastUpdateBy)
+        internal static Boolean UpdateCustomer(string customerName, string address, string address2, string lastUpdateBy, string phone, int cityId, string userName, string postalCode, int customerId, int active)
         {
             try
             {
+                int addressId = ReadAddressIdByAddress(address);
+                if (addressId == 0)
+                {
+                    CreateAddress(address, address2, phone, cityId, userName, postalCode);
+                    addressId = ReadAddressIdByAddress(address);
+                }
+                if (addressId != 0)
+                {
+                    UpdateAddress(address, address2, cityId, postalCode, phone, userName, addressId);
+                }
                 conn.Open();
                 string sql = "update customer " +
-                    "set customerName = '" + customerName + "', addressId = " + addressId + ", active = " + active + ", createDate = '" + createDate +
-                    "', createdBy = '" + createdBy + "', lastUpdate = CURDATE(), lastUpdateBy ='" + lastUpdateBy +
-                    "' where customerId = " + customerId + ";";
+                    $"set customerName='{customerName}', addressId={addressId}, active={active}, lastUpdate=curdate(), lastUpdateBy='{lastUpdateBy}' " +
+                    $"where customerId={customerId};";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
+
                 return true;
             }
             catch
@@ -222,6 +246,81 @@ namespace C969
             {
                 conn.Open();
                 string sql = "delete from customer where customerId = " + customerId + ";";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch
+            {
+                conn.Close();
+                return false;
+            }
+        }
+        internal static Boolean CreateAddress(string address, string address2, string phone, int cityId, string postalCode, string createdBy)
+        {
+            try
+            {
+                conn.Open();
+                string sql = $"insert into address (address,address2,cityId,postalCode,phone,createDate,createdBy,lastUpdate,lastUpdateBy)" +
+                    $" values ('{address}','{address2}','{cityId}','{postalCode}','{phone}',curdate(),'{createdBy}',curdate(),'{createdBy}');";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            catch
+            {
+                conn.Close();
+                return false;
+            }
+        }
+
+        internal static int ReadAddressIdByAddress(string address)
+        {
+            try
+            {
+                conn.Open();
+                string sql = "select * from address where address = '" + address + "';";
+                Console.WriteLine(sql);
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int output = Int32.Parse(reader.GetString(0));
+                        conn.Close();
+                        return output;
+                    }
+                    conn.Close();
+                    return 0;
+                }
+                else
+                {
+                    conn.Close();
+                    return 0;
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+
+
+        internal static Boolean UpdateAddress(string address, string address2, int cityId, string postalCode, string phone, string lastUpdateBy, int addressId)
+        {
+            try
+            {
+                conn.Open();
+                string sql = "update address " +
+                    "set address = '"+address+"', address2 ='"+address2+"', phone = '" + phone + "', lastUpdate = CURDATE(), " +
+                    "lastUpdateBy ='" + lastUpdateBy + "', cityId = "+cityId+", postalCode = '"+postalCode+"'" +
+                    " where addressId = " + addressId + ";";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();

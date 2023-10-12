@@ -107,7 +107,7 @@ namespace C969
                 {
                     listView2.Columns.Clear();
                     listView2.Columns.Add("No appointments today");
-                    listView2.Columns[1].Width = -2;
+                    listView2.Columns[0].Width = -2;
                 }
                 else
                 {
@@ -132,7 +132,7 @@ namespace C969
             {
                 listView2.Columns.Clear();
                 listView2.Columns.Add("No appointments today");
-                listView2.Columns[1].Width = -2;
+                listView2.Columns[0].Width = -2;
             }
 
             try

@@ -34,7 +34,6 @@
             this.SubmitButton = new System.Windows.Forms.Button();
             this.PassBox = new System.Windows.Forms.TextBox();
             this.PassLabelSec = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.PassLabelPri = new System.Windows.Forms.Label();
             this.UserLabelPri = new System.Windows.Forms.Label();
             this.RegisterButton = new System.Windows.Forms.Button();
@@ -70,11 +69,6 @@
             resources.ApplyResources(this.PassLabelSec, "PassLabelSec");
             this.PassLabelSec.Name = "PassLabelSec";
             // 
-            // label1
-            // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
-            // 
             // PassLabelPri
             // 
             resources.ApplyResources(this.PassLabelPri, "PassLabelPri");
@@ -92,20 +86,19 @@
             this.RegisterButton.UseVisualStyleBackColor = true;
             this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
-            // login
+            // Login
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.RegisterButton);
             this.Controls.Add(this.PassLabelPri);
             this.Controls.Add(this.UserLabelPri);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.PassBox);
             this.Controls.Add(this.PassLabelSec);
             this.Controls.Add(this.SubmitButton);
             this.Controls.Add(this.UserBox);
             this.Controls.Add(this.UserLabelSec);
-            this.Name = "login";
+            this.Name = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -118,7 +111,6 @@
         private System.Windows.Forms.Button SubmitButton;
         private System.Windows.Forms.TextBox PassBox;
         private System.Windows.Forms.Label PassLabelSec;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label PassLabelPri;
         private System.Windows.Forms.Label UserLabelPri;
         private System.Windows.Forms.Button RegisterButton;

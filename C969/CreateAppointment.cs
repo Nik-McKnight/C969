@@ -88,6 +88,10 @@ namespace C969
         {
             try
             {
+                if (!Utilities.CheckHours(StartBox.Text, EndBox.Text))
+                {
+                    throw new BusinessHoursException();
+                }
                 string start = Utilities.ConvertToUtc(DateTime.Parse(StartBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
                 string end = Utilities.ConvertToUtc(DateTime.Parse(EndBox.Text)).ToString("yyyy-MM-dd HH:mm:ss");
                 if (Utilities.CreateAppointment(Int32.Parse(CustIdBox.Text), Int32.Parse(UserIDBox.Text), TitleBox.Text, DescBox.Text,
@@ -105,5 +109,6 @@ namespace C969
                 MessageBox.Show("Appointment has not been created.");
             }
         }
+
     }
 }

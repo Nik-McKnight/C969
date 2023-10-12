@@ -33,7 +33,7 @@ namespace C969
 
             // Enable this to add an appointments over the next week for userId 1. Used to test weekly calendar.
             //Utilities.addAppointmentsOverNextWeek();
-
+            Utilities.CheckHours("1/15/2023 2:00:00 PM", "1/15/2023 2:00:00 PM");
             Application.Run(new Login());
         }
     }

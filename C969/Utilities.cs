@@ -1005,5 +1005,21 @@ namespace C969
             }
         }
 
+        internal static Boolean CheckHours(string st, string e)
+        {
+            DateTime start = DateTime.Parse(st);
+            DateTime end = DateTime.Parse(e);
+            DateTime open = DateTime.Parse(start.ToShortDateString()).Add(new TimeSpan(8, 0, 0));
+            DateTime close = open.Add(new TimeSpan(9, 0, 0));
+            
+            if (start > close || start < open || end > close || end < open)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     }
+
 }

@@ -104,6 +104,7 @@
     <Compile Include="Appointments.Designer.cs">
       <DependentUpon>Appointments.cs</DependentUpon>
     </Compile>
+    <Compile Include="BusinessHoursException.cs" />
     <Compile Include="Calendar.cs">
       <SubType>Form</SubType>
     </Compile>

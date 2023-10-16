@@ -33,11 +33,12 @@ namespace C969
 
         // Create connection string
         static string server = "localhost";
-        static string database = "mydb";
-        static string username = "root";
-        //string username = "test";
-        static string password = "nikk";
-        //string password = "test";
+        //static string database = "mydb";
+        static string database = "client_schedule";
+        //static string username = "root";
+        static string username = "sqlUser";
+        //static string password = "nikk";
+        static string password = "Passw0rd!";
         static string constring = "SERVER="+server+";DATABASE="+database+";UID="+username+";PASSWORD="+password+";";
         static MySqlConnection conn = new MySqlConnection(constring);
 

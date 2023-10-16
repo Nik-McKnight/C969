@@ -79,6 +79,7 @@ namespace C969
             MySqlDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows)
             {
+                conn.Close();
                 return true;
             }
             else
@@ -91,6 +92,10 @@ namespace C969
         internal static Boolean CreateUser(string userName, string password)
         {
             try {
+                if (UserNameExists(userName))
+                {
+                    return false;
+                }
                 conn.Open();
                 if (userName == null || userName == "" || password == null || password == "") return false;
                 string sql = "INSERT INTO user (userName, password, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
@@ -1035,10 +1040,18 @@ namespace C969
                         writer.WriteLine("User ID: " + user);
                         writer.WriteLine("---------------------------------------------------------------------------------------------------");
                         List<string[]> appointments = ReadUserAppointmentsUpcoming(user);
-                        foreach (string[] appointment in appointments)
+                        if (appointments != null)
                         {
-                            writer.WriteLine($"Start Time: {appointment[4]}, End Time: {appointment[5]}, Customer: {appointment[1]}, Title: {appointment[2]}, Description: {appointment[3]}");
-                        writer.WriteLine("----------");
+
+                            foreach (string[] appointment in appointments)
+                            {
+                                writer.WriteLine($"Start Time: {appointment[4]}, End Time: {appointment[5]}, Customer: {appointment[1]}, Title: {appointment[2]}, Description: {appointment[3]}");
+                                writer.WriteLine("----------");
+                            }
+                        }
+                        else
+                        {
+                            writer.WriteLine($"{user} has no appointments");
                         }
                         writer.WriteLine("===================================================================================================");
                         writer.WriteLine();
@@ -1065,17 +1078,24 @@ namespace C969
                         writer.WriteLine(customer);
                         writer.WriteLine("---------------------------------------------------------------------------------------------------");
                         List<string[]> appointments = ReadAppointmentsByCustomerName(customer);
-                        foreach (string[] appointment in appointments)
+                        if (appointments != null)
                         {
-                            try
+                            foreach (string[] appointment in appointments)
                             {
-                                writer.WriteLine($"Start Time: {appointment[4]}, End Time: {appointment[5]}, Customer: {appointment[1]}, Title: {appointment[2]}, Description: {appointment[3]}");
-                                writer.WriteLine("----------");
-                            }
-                            catch
-                            {
+                                try
+                                {
+                                    writer.WriteLine($"Start Time: {appointment[4]}, End Time: {appointment[5]}, Customer: {appointment[1]}, Title: {appointment[2]}, Description: {appointment[3]}");
+                                    writer.WriteLine("----------");
+                                }
+                                catch
+                                {
 
+                                }
                             }
+                        }
+                        else
+                        {
+                            writer.WriteLine($"{customer} has no appointments");
                         }
                         writer.WriteLine("===================================================================================================");
                         writer.WriteLine();

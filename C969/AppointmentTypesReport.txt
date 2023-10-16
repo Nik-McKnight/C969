@@ -2,9 +2,6 @@ January
 ---------------------------------------------------------------------------------------------------
 Type: Presentation, Number: 1
 Type: Scrum, Number: 1
-Type: vestibulum ac, Number: 1
-Type: in, Number: 1
-Type: justo, Number: 1
 ===================================================================================================
 
 February

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace C969
 {
+    // B.Provide the ability to update and delete customer records in the database, including name, address, and phone number.
     public partial class UpdateDeleteCustomer : Form
     {
         User user;
@@ -93,6 +94,7 @@ namespace C969
             }
             catch
             {
+                // F. Exception Controls: entering nonexistent or invalid customer data
                 MessageBox.Show("City ID must be an integer");
                 CityBox.Text="";
             }
@@ -135,6 +137,8 @@ namespace C969
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             try {
+                // F. Exception Controls: entering nonexistent or invalid customer data
+
                 if (Utilities.UpdateCustomer(NameBox.Text, Ad1Box.Text, Ad2Box.Text, this.user.userName, PhoneBox.Text,
                 Int32.Parse(CityBox.Text), this.user.userName, PCBox.Text, Int32.Parse(this.customerId), 1))
                 {

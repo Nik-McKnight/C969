@@ -14,6 +14,10 @@ namespace C969
         {
             InitializeComponent();
 
+            // A.   Create a log-in form that can determine the user’s location and translate log-in
+            // and error control messages (e.g., “The username and password did not match.”) into the
+            // user’s language and in one additional language.
+
             pri = new ResourceManager("C969.strings_" + Utilities.GetPrimaryCulture(),
                 Assembly.GetExecutingAssembly());
             sec = new ResourceManager("C969.strings_" + Utilities.GetSecondaryCulture(),
@@ -37,17 +41,24 @@ namespace C969
             if (user != null)
             {
                 this.user = new User(user);
+
+                //J.Provide the ability to track user activity by recording timestamps for user log-ins
+                //in a.txt file.Each new record should be appended to the log file if the file already exists.
                 Utilities.Log(this.user);
+
+                // H.  Write code to provide reminders and alerts 15 minutes in advance of an appointment, based on the user’s log-in.
                 if (Utilities.checkForUpcomingAppointment(this.user) == true)
                 {
                     MessageBox.Show(pri.GetString("APPOINTMENT") + " / " + sec.GetString("APPOINTMENT"));
                 }
+
                 var calendar = new Calendar(this.user);
                 calendar.Show();
                 return true;
             }
             else
             {
+                // F. Exception Controls: entering an incorrect username and password
                 MessageBox.Show(pri.GetString("LOGINFALSE") + " / " + sec.GetString("LOGINFALSE"));
                 return false;
             }
@@ -57,12 +68,12 @@ namespace C969
         {
             if (Utilities.CreateUser(this.UserBox.Text, this.PassBox.Text))
             {
-                MessageBox.Show(pri.GetString("REGISTERTRUE"));
+                MessageBox.Show(pri.GetString("REGISTERTRUE") + " / " + sec.GetString("REGISTERTRUE"));
                 return true;
             }
             else
             {
-                MessageBox.Show(pri.GetString("REGISTERFALSE"));
+                MessageBox.Show(pri.GetString("REGISTERFALSE") + " / " + sec.GetString("REGISTERFALSE"));
                 return false;
             }
         }

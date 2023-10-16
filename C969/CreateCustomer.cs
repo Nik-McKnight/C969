@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace C969
 {
+    // B.Provide the add customer records in the database, including name, address, and phone number.
     public partial class CreateCustomer : Form
     {
         User user;

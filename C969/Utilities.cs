@@ -394,7 +394,7 @@ namespace C969
 
         internal static void addAppointmentInFourteenMinutes()
         {
-            // Lamba 2: I wanted to easily add 14 minutes to a Datetime and convert it into the format acceptable by the database.
+            // G. Lambda: I wanted to easily add 14 minutes to a Datetime and convert it into the format acceptable by the database.
             Func<DateTime, string> addFourteen = x =>
             {
                 return x.Add(new TimeSpan(0,14,0)).ToString("yyyy-MM-dd HH:mm:ss");
@@ -412,13 +412,14 @@ namespace C969
 
         internal static void addAppointmentsOverNextWeek()
         {
-            // Lamba 3: I wanted to easily add one day to a Datetime.
+            // G. Lambda: I wanted to easily add one day to a Datetime.
             Func<DateTime, DateTime> addOneDay = x =>
             {
                 return x.Add(new TimeSpan(24,0, 0));
             };
             conn.Open();
 
+            // G. Lambda: I needed to repeatedly make a similar sql query inside this function.
             Func<DateTime, DateTime> addApp = x =>
             {
                 string sql = "INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, " +
@@ -913,7 +914,7 @@ namespace C969
 
         internal static string ConvertDate(string calDate)
         {
-            // Lambda 1: I needed to pad two different strings, but I don't need to do it outside of this function.
+            // G. Lambda: I needed to pad two different strings, but I don't need to do it outside of this function.
             Func<string, string> Pad = x => "0" + x;
             string[] split = calDate.Split('/');
             string month = split[0];
@@ -924,6 +925,7 @@ namespace C969
             return year + "-" + month + "-" + day;
         }
 
+        // E.   Provide the ability to automatically adjust appointment times based on user time zones and daylight-saving time.
         internal static DateTime ConvertToLocalTime(string date)
         {
             DateTime dt = DateTime.Parse(date);
@@ -932,6 +934,7 @@ namespace C969
             return dt.Add(currentOffset);
         }
 
+        // E.   Provide the ability to automatically adjust appointment times based on user time zones and daylight-saving time.
         internal static DateTime ConvertToUtc(DateTime local)
         {
             TimeZone curTimeZone = TimeZone.CurrentTimeZone;
@@ -939,6 +942,7 @@ namespace C969
             return local.Subtract(currentOffset);
         }
 
+        // H.  Write code to provide reminders and alerts 15 minutes in advance of an appointment, based on the user’s log-in.
         internal static Boolean checkForUpcomingAppointment(User user)
         {
             string[][] appointments = ReadAllAppointmentsByUser(user.userId);
@@ -958,6 +962,8 @@ namespace C969
             return false;
         }
 
+        //J.Provide the ability to track user activity by recording timestamps for user log-ins
+        //in a.txt file.Each new record should be appended to the log file if the file already exists.
         internal static void Log(User user)
         {
             using (StreamWriter writer = new StreamWriter("../../Log.txt", true))
@@ -967,9 +973,10 @@ namespace C969
             }
         }
 
+        // I. Provide the ability to generate number of appointment types by month report
         internal static Boolean AppointmentTypesReport()
         {
-            // Lambda Func: I needed to call a function many times that would only be used inside this report function.
+            // G. Lambda Func: I needed to call a function many times that would only be used inside this report function.
             Func<List<string[]>, StreamWriter, String, Boolean> MonthReport = (x, y, z) =>
             {
                 y.WriteLine(z);
@@ -1014,6 +1021,7 @@ namespace C969
             }
         }
 
+        // I. Provide the ability to generate the schedule for each consultant report
         internal static Boolean ConsultantSchedulesReport()
         {
             try
@@ -1043,6 +1051,7 @@ namespace C969
             }
         }
 
+        // I. Provide the ability to generate one additional report (A report of every appointment for each customer)
         internal static Boolean CustomerAppointmentsReport()
         {
             try
@@ -1079,6 +1088,7 @@ namespace C969
             }
         }
 
+        // F. Exception Controls: scheduling an appointment outside business hours
         internal static Boolean CheckHours(string st, string e)
         {
             DateTime start = DateTime.Parse(st);
@@ -1094,6 +1104,7 @@ namespace C969
             return true;
         }
 
+        // F. Exception Controls: scheduling overlapping appointments
         internal static Boolean DoesOverlap(int userId, int customerId, DateTime start, DateTime end, int appointmentId = 0)
         {
             string[][] appointments = ReadAllAppointmentsByUserAndCustomer(userId, customerId);
@@ -1111,6 +1122,7 @@ namespace C969
             return false;
         }
 
+        // F. Exception Controls: entering nonexistent or invalid customer data
         internal static void CheckCustomerAndUserExist(int customerId, int userId)
         {
             if (ReadCustomer(customerId) == null)
@@ -1123,6 +1135,8 @@ namespace C969
             }
         }
     }
+
+    // F. Exception Controls: scheduling overlapping appointments
     internal class OverlapException : Exception
     {
         internal OverlapException()
@@ -1130,6 +1144,8 @@ namespace C969
             MessageBox.Show("Appointment overlaps with an existing appointment.");
         }
     }
+
+    // F. Exception Controls: entering nonexistent or invalid customer data
     internal class DoesNotExistException : Exception
     {
         internal DoesNotExistException(string s, int i)

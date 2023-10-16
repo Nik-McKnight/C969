@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace C969
 {
+    // D.Provide the ability to view the calendar by month.
     public partial class Calendar : Form
     {
         internal string[][] userAppointments;

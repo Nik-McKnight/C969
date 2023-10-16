@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace C969
 {
+    // C.   Provide the ability to update and delete appointments,
+    // capturing the type of appointment and a link to the specific customer record in the database.
     public partial class UpdateDeleteAppointment : Form
     {
         User user;
@@ -183,11 +185,13 @@ namespace C969
             {
                 Utilities.CheckCustomerAndUserExist(Int32.Parse(CustIdBox.Text), Int32.Parse(UserIDBox.Text));
 
+                // F. Exception Controls: scheduling an appointment outside business hours
                 if (!Utilities.CheckHours(StartBox.Text, EndBox.Text))
                 {
                     throw new BusinessHoursException();
                 }
 
+                // F. Exception Controls: scheduling overlapping appointments
                 if (Utilities.DoesOverlap(Int32.Parse(UserIDBox.Text), Int32.Parse(CustIdBox.Text), Utilities.ConvertToUtc(DateTime.Parse(StartBox.Text)), Utilities.ConvertToUtc(DateTime.Parse(EndBox.Text)), this.appointmentId))
                 {
                     throw new OverlapException();

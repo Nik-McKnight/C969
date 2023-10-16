@@ -61,6 +61,15 @@ namespace C969 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ¡Tienes una cita en los próximos 15 minutos!.
+        /// </summary>
+        internal static string APPOINTMENT {
+            get {
+                return ResourceManager.GetString("APPOINTMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Acceso.
         /// </summary>
         internal static string LOGIN {
@@ -70,11 +79,56 @@ namespace C969 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nombre de usuario o contraseña incorrecta.
+        /// </summary>
+        internal static string LOGINFALSE {
+            get {
+                return ResourceManager.GetString("LOGINFALSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conectado.
+        /// </summary>
+        internal static string LOGINTRUE {
+            get {
+                return ResourceManager.GetString("LOGINTRUE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Introducir la contraseña.
         /// </summary>
         internal static string PASSWORD {
             get {
                 return ResourceManager.GetString("PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registro.
+        /// </summary>
+        internal static string REGISTER {
+            get {
+                return ResourceManager.GetString("REGISTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to nombre de usuario ya existe.
+        /// </summary>
+        internal static string REGISTERFALSE {
+            get {
+                return ResourceManager.GetString("REGISTERFALSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario creado.
+        /// </summary>
+        internal static string REGISTERTRUE {
+            get {
+                return ResourceManager.GetString("REGISTERTRUE", resourceCulture);
             }
         }
         

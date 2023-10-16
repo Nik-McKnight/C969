@@ -117,11 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="APPOINTMENT" xml:space="preserve">
+    <value>¡Tienes una cita en los próximos 15 minutos!</value>
+  </data>
   <data name="LOGIN" xml:space="preserve">
     <value>Acceso</value>
   </data>
+  <data name="LOGINFALSE" xml:space="preserve">
+    <value>Nombre de usuario o contraseña incorrecta</value>
+  </data>
+  <data name="LOGINTRUE" xml:space="preserve">
+    <value>Conectado</value>
+  </data>
   <data name="PASSWORD" xml:space="preserve">
     <value>Introducir la contraseña</value>
+  </data>
+  <data name="REGISTER" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="REGISTERFALSE" xml:space="preserve">
+    <value>nombre de usuario ya existe</value>
+  </data>
+  <data name="REGISTERTRUE" xml:space="preserve">
+    <value>Usuario creado</value>
   </data>
   <data name="USERNAME" xml:space="preserve">
     <value>Introduzca su nombre de usuario</value>

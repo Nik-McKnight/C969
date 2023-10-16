@@ -10,6 +10,7 @@ namespace C969
             InitializeComponent();
         }
 
+        // I. Provide the ability to generate number of appointment types by month report
         private void TypesButton_Click(object sender, System.EventArgs e)
         {
             if (Utilities.AppointmentTypesReport())
@@ -22,6 +23,7 @@ namespace C969
             }
         }
 
+        // I. Provide the ability to generate the schedule for each consultant report
         private void ConsultantsButton_Click(object sender, System.EventArgs e)
         {
             if (Utilities.ConsultantSchedulesReport())
@@ -34,6 +36,7 @@ namespace C969
             }
         }
 
+        // I. Provide the ability to generate one additional report (A report of every appointment for each customer)
         private void CustomerButton_Click(object sender, System.EventArgs e)
         {
             if (Utilities.CustomerAppointmentsReport())

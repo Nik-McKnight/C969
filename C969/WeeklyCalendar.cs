@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace C969
 {
+    // D.   Provide the ability to view the calendar by week. 
     public partial class WeeklyCalendar : Form
     {
         User user;

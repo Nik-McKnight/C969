@@ -32,10 +32,11 @@ namespace C969
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Enable this to add an appointment in fourteen minutes for userId 1. Used to test appointment reminder.
-            Utilities.addAppointmentInFourteenMinutes();
+            //Utilities.addAppointmentInFourteenMinutes();
 
             // Enable this to add an appointments over the next week for userId 1. Used to test weekly calendar.
             Utilities.addAppointmentsOverNextWeek();
+
             Application.Run(new Login());
         }
     }

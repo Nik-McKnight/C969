@@ -97,9 +97,10 @@ namespace C969
                     return false;
                 }
                 conn.Open();
+                string now = ConvertToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss");
                 if (userName == null || userName == "" || password == null || password == "") return false;
                 string sql = "INSERT INTO user (userName, password, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
-                    "VALUES ('" + userName + "','" + password + "',1, CURDATE(),'" + userName + "', CURDATE() ,'" + userName + "');";
+                    "VALUES ('" + userName + "','" + password + "',1, '"+ now+"','" + userName + "', '"+ now+"' ,'" + userName + "');";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
@@ -124,9 +125,10 @@ namespace C969
                     CreateAddress(address, address2, phone, cityId, userName, postalCode);
                     addressId = ReadAddressIdByAddress(address);
                 }
+                string now = ConvertToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss");
                 conn.Open();
                 string sql = "INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy) " +
-                    "VALUES ('" + customerName + "'," + addressId + ",1, CURDATE(),'" + createdBy + "', CURDATE() ,'" + createdBy + "');";
+                    "VALUES ('" + customerName + "'," + addressId + ",1, '"+ now+"','" + createdBy + "', '"+ now+"' ,'" + createdBy + "');";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
@@ -263,9 +265,10 @@ namespace C969
                 {
                     UpdateAddress(address, address2, cityId, postalCode, phone, userName, addressId);
                 }
+                string now = ConvertToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss");
                 conn.Open();
                 string sql = "update customer " +
-                    $"set customerName='{customerName}', addressId={addressId}, active={active}, lastUpdate=curdate(), lastUpdateBy='{lastUpdateBy}' " +
+                    $"set customerName='{customerName}', addressId={addressId}, active={active}, lastUpdate='{now}', lastUpdateBy='{lastUpdateBy}' " +
                     $"where customerId={customerId};";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -381,10 +384,11 @@ namespace C969
             try
             {
                 conn.Open();
+                string now = ConvertToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss");
                 string sql = "INSERT INTO appointment (customerId, userId, title, description, location, contact, type, url, start, end, " +
                              "createDate, createdBy, lastUpdate, lastUpdateBy) " +
                     "VALUES (" + customerId + "," + userId + ", '" + title + "','" + description + "','" + location + "','" + contact + "','" +
-                    type + "','" + url + "','" +start + "','" +end + "',CURDATE(),'" + createdBy + "', CURDATE() ,'" + createdBy + "');";
+                    type + "','" + url + "','" +start + "','" +end + "','"+ now+"','" + createdBy + "', '"+ now+"' ,'" + createdBy + "');";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 cmd.ExecuteNonQuery();
@@ -881,10 +885,11 @@ namespace C969
             try
             {
                 conn.Open();
+                string now = ConvertToUtc(DateTime.Now).ToString("yyyy-MM-dd HH:mm:ss");
                 string sql = "update appointment " +
                     "set customerId = " + customerId + ", userId = " + userId + ", title = '" + title + "', description = '" + description +
                     "', location = '" + location + "', contact = '" + contact +"', type = '" + type + "', url = '" + url +
-                    "', start = '" + start + "', end = '" + end + "', lastUpdate = CURDATE(), lastUpdateBy ='" + lastUpdateBy +
+                    "', start = '" + start + "', end = '" + end + "', lastUpdate = '" + now + "', lastUpdateBy ='" + lastUpdateBy +
                     "' where appointmentId = " + appointmentId + ";";
                 Console.WriteLine(sql);
                 MySqlCommand cmd = new MySqlCommand(sql, conn);

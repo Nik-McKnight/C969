@@ -34,10 +34,10 @@ namespace C969
         // Create connection string
         static string server = "localhost";
         //static string database = "mydb";
-        static string database = "client_schedule";
         //static string username = "root";
-        static string username = "sqlUser";
         //static string password = "nikk";
+        static string database = "client_schedule";
+        static string username = "sqlUser";
         static string password = "Passw0rd!";
         static string constring = "SERVER="+server+";DATABASE="+database+";UID="+username+";PASSWORD="+password+";";
         static MySqlConnection conn = new MySqlConnection(constring);
@@ -977,7 +977,7 @@ namespace C969
         //in a.txt file.Each new record should be appended to the log file if the file already exists.
         internal static void Log(User user)
         {
-            using (StreamWriter writer = new StreamWriter("../../Log.txt", true))
+            using (StreamWriter writer = new StreamWriter("../../Logs and Reports/Log.txt", true))
             {
                 string log = $"Login Time: {DateTime.Now.ToString()}, User ID: {user.userId}, Username: {user.userName}";
                 writer.WriteLine(log);
@@ -1009,7 +1009,7 @@ namespace C969
 
             try
             {
-                using (StreamWriter writer = new StreamWriter("../../AppointmentTypesReport.txt"))
+                using (StreamWriter writer = new StreamWriter("../../Logs and Reports/AppointmentTypesReport.txt"))
                 {
                     MonthReport(ReadAppointmentTypesByMonth("01"), writer, "January");
                     MonthReport(ReadAppointmentTypesByMonth("02"), writer, "February");
@@ -1037,7 +1037,7 @@ namespace C969
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter("../../ConsultantAppointmentsReport.txt"))
+                using (StreamWriter writer = new StreamWriter("../../Logs and Reports/ConsultantAppointmentsReport.txt"))
                 {
                     List<string> users = ReadUsersWithUpcomingAppointments();
                     foreach (string user in users)
@@ -1075,7 +1075,7 @@ namespace C969
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter("../../CustomerAppointmentsReport.txt"))
+                using (StreamWriter writer = new StreamWriter("../../Logs and Reports/CustomerAppointmentsReport.txt"))
                 {
                     List<string> customers = ReadCustomersWithAppointments();
                     foreach (string customer in customers)

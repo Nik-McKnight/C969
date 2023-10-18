@@ -15,11 +15,12 @@ namespace C969
         {
             if (Utilities.AppointmentTypesReport())
             {
-                MessageBox.Show("Report Generated!");
+                MessageBox.Show("Report generated to 'C969/Logs and Reports/AppointmentTypesReport.txt'.\n\n" +
+                    "Be sure to look in file explorer if the file does not show up in the solution explorer.");
             }
             else
             {
-                MessageBox.Show("Report Not Generated!");
+                MessageBox.Show("Report not generated!");
             }
         }
 
@@ -28,11 +29,12 @@ namespace C969
         {
             if (Utilities.ConsultantSchedulesReport())
             {
-                MessageBox.Show("Report Generated!");
+                MessageBox.Show("Report generated to 'C969/Logs and Reports/ConsultantAppointmentsReport.txt'.\n\n" +
+                    "Be sure to look in file explorer if the file does not show up in the solution explorer.");
             }
             else
             {
-                MessageBox.Show("Report Not Generated!");
+                MessageBox.Show("Report not generated!");
             }
         }
 
@@ -41,11 +43,12 @@ namespace C969
         {
             if (Utilities.CustomerAppointmentsReport())
             {
-                MessageBox.Show("Report Generated!");
+                MessageBox.Show("Report generated to 'C969/Logs and Reports/CustomerAppointmentsReport.txt'.\n\n" +
+                    "Be sure to look in file explorer if the file does not show up in the solution explorer.");
             }
             else
             {
-                MessageBox.Show("Report Not Generated!");
+                MessageBox.Show("Report not generated!");
             }
         }
     }

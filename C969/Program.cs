@@ -26,7 +26,7 @@ namespace C969
             //System.Threading.Thread.CurrentThread.CurrentCulture = System.Globalization.CultureInfo.GetCultureInfo("de");
 
             // Enable this to seed database
-            // Utilities.SeedData();
+            //Utilities.SeedData();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

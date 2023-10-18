@@ -244,5 +244,8 @@
   <ItemGroup>
     <Content Include="Schema.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logs and Reports\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -147,7 +147,6 @@ C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.CreateCustomer.resources
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.Login.resources
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.Reports.resources
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.Properties.Resources.resources
-C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.strings_de.resources
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.strings_es-MX.resources
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.strings_en-us.resources
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.UpdateDeleteAppointment.resources
@@ -158,3 +157,4 @@ C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.csproj.CoreCompileInputs.
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.csproj.CopyComplete
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.exe
 C:\Users\LabUser\Source\Repos\C969\C969\obj\Debug\C969.pdb
+C:\Users\LabUser\source\repos\C969\C969\obj\Debug\C969.strings_de-DE.resources

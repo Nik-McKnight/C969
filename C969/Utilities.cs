@@ -14,7 +14,9 @@ namespace C969
     {
         internal static string GetPrimaryCulture()
         {
+            Console.WriteLine(System.Globalization.CultureInfo.CurrentCulture.ToString());
             return System.Globalization.CultureInfo.CurrentCulture.ToString();
+
         }
 
         internal static string GetSecondaryCulture()
@@ -25,7 +27,7 @@ namespace C969
             }
             else
             {
-                return "en-us";
+                return "en-US";
             }
         }
 

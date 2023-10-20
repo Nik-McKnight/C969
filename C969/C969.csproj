@@ -129,8 +129,8 @@
     <Compile Include="Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
-    <Compile Include="strings_de.Designer.cs">
-      <DependentUpon>strings_de.resx</DependentUpon>
+    <Compile Include="strings_de-DE.Designer.cs">
+      <DependentUpon>strings_de-DE.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -200,9 +200,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="strings_de.resx">
+    <EmbeddedResource Include="strings_de-DE.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>strings_de.Designer.cs</LastGenOutput>
+      <LastGenOutput>strings_de-DE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="strings_es-MX.resx">
       <Generator>ResXFileCodeGenerator</Generator>
